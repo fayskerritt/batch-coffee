@@ -46,32 +46,33 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
+        <div class="row navbar">
+            <div class="col-12 col-md-5">
+                <ul class="navbar-nav mr-auto list-inline">
+                    <li class="nav-item list-inline-item">
                         <a class="nav-link" href="#">HOME</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item list-inline-item">
                         <a class="nav-link" href="#">ABOUT</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item list-inline-item">
                         <a class="nav-link" href="#">SHOP <i class="fas fa-caret-down"></i></a>
+
                     </li>
                 </ul>
+            </div>
+            <div class="col-2 d-none d-lg-block">
                 <img class="nav-logo" src="media/whitelogo.png" alt="Logo">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-12 col-md-7 col-lg-5 text-right">
+                <form class="form-inline d-inline-block">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn my-2 search-submit" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-                <ul class="navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item dropdown">
+                <ul class="navbar-nav d-inline-block list-inline">
+                    <li class="nav-item dropdown list-inline-item">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
@@ -83,7 +84,7 @@
                             <a class="dropdown-item" href="#">STORE ADMIN</a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item list-inline-item">
                         <a class="nav-link" href="#">
                             <i class="fas fa-shopping-cart"></i>
                             {% if items in cart %}
@@ -95,10 +96,85 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-    </header>
+        </div>
 
-    <i class="fas fa-search"></i>
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar"
+                aria-controls="nav-bar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav-bar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="allcoffee-dropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ALL COFFEE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="allcoffee-dropdown">
+                            <a class="dropdown-item" href="#">BY PRICE</a>
+                            <a class="dropdown-item" href="#">BY CATEGORY</a>
+                            <a class="dropdown-item" href="#">BY RATING</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">ALL COFFEE</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="wholebean-dropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            WHOLE BEAN
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="wholebean-dropdown">
+                            <a class="dropdown-item" href="#">ARABICA</a>
+                            <a class="dropdown-item" href="#">ROBUSTA</a>
+                            <a class="dropdown-item" href="#">LIBERICA</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">ALL WHOLE BEAN</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="cafetiere-dropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CAFETIERE
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cafetiere-dropdown">
+                            <a class="dropdown-item" href="#">ARABICA</a>
+                            <a class="dropdown-item" href="#">ROBUSTA</a>
+                            <a class="dropdown-item" href="#">LIBERICA</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">ALL CAFETIERE</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="filter-dropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            FILTER
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="filter-dropdown">
+                            <a class="dropdown-item" href="#">ARABICA</a>
+                            <a class="dropdown-item" href="#">ROBUSTA</a>
+                            <a class="dropdown-item" href="#">LIBERICA</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">ALL FILTER</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="espresso-dropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ESPRESSO
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="espresso-dropdown">
+                            <a class="dropdown-item" href="#">ARABICA</a>
+                            <a class="dropdown-item" href="#">ROBUSTA</a>
+                            <a class="dropdown-item" href="#">LIBERICA</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">ALL ESPRESSO</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
 
     {% if messages %}
     <div class="message-cont">
@@ -113,6 +189,7 @@
     {% endblock %}
 
     {% block postloadjs %}
+
     {% endblock %}
 </body>
 

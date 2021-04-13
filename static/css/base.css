@@ -120,6 +120,21 @@ a.nav-link {
     color: #fff !important;
 }
 
+.main-nav {
+    background-color: #000;
+    border-top: solid 1px #fff;
+    padding: 0;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    float: none;
+}
+
 /* @media (max-width: 491px) {
     .header-container {
         padding-top: 116px;
