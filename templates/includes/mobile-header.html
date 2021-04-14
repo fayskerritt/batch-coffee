@@ -1,0 +1,32 @@
+<div class="mobile-header navbar d-inline-block d-sm-none">
+    <ul class="navbar-nav d-inline-block list-inline">
+        <li class="nav-item dropdown list-inline-item">
+            <span class="nav-link dropdown-toggle" id="search-dropdown">
+                <i class="fas fa-search"></i>
+            </span>
+        </li>
+        <li class="nav-item dropdown list-inline-item">
+            <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" id="user-mobile" aria-labelledby="user-dropdown">
+                <a class="dropdown-item" href="#">MY PROFILE</a>
+                <a class="dropdown-item" href="#">LOGIN</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">STORE ADMIN</a>
+            </div>
+        </li>
+        <li class="nav-item list-inline-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-shopping-cart"></i>
+                {% if items in cart %}
+                items
+                {% else %}
+                0
+                {% endif %}
+            </a>
+        </li>
+    </ul>
+</div>
+</div>

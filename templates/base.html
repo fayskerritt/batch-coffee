@@ -27,9 +27,8 @@
     {% endblock %}
 
     {% block corejs %}
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
@@ -46,7 +45,7 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <div class="row navbar">
+        <div class="row navbar d-none d-sm-flex">
             <div class="col-12 col-md-5">
                 <ul class="navbar-nav mr-auto list-inline">
                     <li class="nav-item list-inline-item">
@@ -56,20 +55,24 @@
                         <a class="nav-link" href="#">ABOUT</a>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link" href="#">SHOP <i class="fas fa-caret-down"></i></a>
+                        <span class="nav-link" id="shop">SHOP <i class="fas fa-caret-down"></i></span>
 
                     </li>
                 </ul>
             </div>
             <div class="col-2 d-none d-lg-block">
-                <img class="nav-logo" src="media/whitelogo.png" alt="Logo">
+                <a href="#"><img class="nav-logo py-1" src="media/whitelogo.png" alt="Logo"></a>
             </div>
             <div class="col-12 col-md-7 col-lg-5 text-right">
                 <form class="form-inline d-inline-block">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn my-2 search-submit" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary mr-2" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </form>
                 <ul class="navbar-nav d-inline-block list-inline">
                     <li class="nav-item dropdown list-inline-item">
@@ -98,80 +101,13 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark d-none" id="shop-nav">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar"
                 aria-controls="nav-bar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="nav-bar">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="allcoffee-dropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ALL COFFEE
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="allcoffee-dropdown">
-                            <a class="dropdown-item" href="#">BY PRICE</a>
-                            <a class="dropdown-item" href="#">BY CATEGORY</a>
-                            <a class="dropdown-item" href="#">BY RATING</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">ALL COFFEE</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="wholebean-dropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            WHOLE BEAN
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="wholebean-dropdown">
-                            <a class="dropdown-item" href="#">ARABICA</a>
-                            <a class="dropdown-item" href="#">ROBUSTA</a>
-                            <a class="dropdown-item" href="#">LIBERICA</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">ALL WHOLE BEAN</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="cafetiere-dropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            CAFETIERE
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cafetiere-dropdown">
-                            <a class="dropdown-item" href="#">ARABICA</a>
-                            <a class="dropdown-item" href="#">ROBUSTA</a>
-                            <a class="dropdown-item" href="#">LIBERICA</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">ALL CAFETIERE</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="filter-dropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            FILTER
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="filter-dropdown">
-                            <a class="dropdown-item" href="#">ARABICA</a>
-                            <a class="dropdown-item" href="#">ROBUSTA</a>
-                            <a class="dropdown-item" href="#">LIBERICA</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">ALL FILTER</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="espresso-dropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ESPRESSO
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="espresso-dropdown">
-                            <a class="dropdown-item" href="#">ARABICA</a>
-                            <a class="dropdown-item" href="#">ROBUSTA</a>
-                            <a class="dropdown-item" href="#">LIBERICA</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">ALL ESPRESSO</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            {% include 'includes/mobile-header.html' %}
+            {% include 'includes/shop-nav.html' %}
         </nav>
 
     </header>
@@ -188,8 +124,37 @@
     {% block content %}
     {% endblock %}
 
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6 p-2 text-center my-auto">
+                <p>© BATCH COFFEE 2021</p>
+            </div>
+            <div class="col-12 col-md-6 p-2 my-auto">
+                <img class="nav-logo" src="media/whitelogo.png" alt="Logo">
+            </div>
+        </div>
+    </footer>
     {% block postloadjs %}
-
+    <script>
+        $(function () {
+            $('#shop').click(function () {
+                if ($('#shop-nav').css('display') == 'none') {
+                    $('#shop-nav').removeClass('d-none');
+                } else {
+                    $('#shop-nav').addClass('d-none');
+                }
+            });
+        });
+        $(function () {
+            $('#search-dropdown').click(function () {
+                if ($('#mobile-search-bar').css('display') == 'none') {
+                    $('#mobile-search-bar').removeClass('d-none');
+                } else {
+                    $('#mobile-search-bar').addClass('d-none');
+                }
+            })
+        })
+    </script>
     {% endblock %}
 </body>
 
