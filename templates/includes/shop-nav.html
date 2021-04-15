@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" id="nav-bar">
     <ul class="navbar-nav mx-auto">
         <li class="nav-item d-block d-sm-none">
-            <a class="nav-link" href="#">HOME</a>
+            <a class="nav-link" href="{% url 'home' %}">HOME</a>
         </li>
         <li class="nav-item d-block d-sm-none">
             <a class="nav-link" href="#">ABOUT</a>
@@ -77,7 +77,7 @@
     </ul>
 </div>
 <div class="nav-item d-none" id="mobile-search-bar">
-    <form class="form-inline d-inline-block" method="GET" action="#">
+    <form class="form-inline d-inline-block" method="GET" action="">
         <div class="input-group mobile-search">
             <input type="text" class="form-control" name="q" placeholder="Search" aria-label="Search">
             <div class="input-group-append">

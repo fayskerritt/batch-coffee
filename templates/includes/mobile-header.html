@@ -11,10 +11,17 @@
                 <i class="fas fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" id="user-mobile" aria-labelledby="user-dropdown">
-                <a class="dropdown-item" href="#">MY PROFILE</a>
-                <a class="dropdown-item" href="#">LOGIN</a>
-                <div class="dropdown-divider"></div>
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="#">STORE ADMIN</a>
+                {% endif %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">MY PROFILE</a>
+                <a class="dropdown-item" href="{% url 'account_logout' %}">LOGOUT</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'account_login' %}">LOGIN</a>
+                <a class="dropdown-item" href="{% url 'account_signup' %}">REGISTER</a>
+                {% endif %}
             </div>
         </li>
         <li class="nav-item list-inline-item">
