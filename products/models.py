@@ -3,6 +3,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=260)
     display_name = models.CharField(max_length=260, null=True, blank=True)
 
@@ -14,11 +18,16 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    BAG_SIZES = (
+        ('250g', '250 grams'),
+        ('500g', '500 grams'),
+    )
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.CASCADE)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
+    bag_size = models.CharField(max_length=4, choices=BAG_SIZES)
     region = models.CharField(max_length=254, null=True, blank=True)
     variety = models.CharField(max_length=254, null=True, blank=True)
     altitude = models.CharField(max_length=20, null=True, blank=True)
