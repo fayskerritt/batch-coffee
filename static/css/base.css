@@ -51,6 +51,7 @@ p {
 .dark-button:hover,
 .dark-button:focus {
     background-color: #022e22;
+    outline: none;
 }
 
 .light-button {
@@ -66,6 +67,7 @@ p {
 .light-button:hover,
 .light-button:focus {
     background-color: #cbe0da;
+    outline: none;
 }
 
 .banner-image {
