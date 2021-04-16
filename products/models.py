@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Category(models.Model):
@@ -21,9 +22,10 @@ class Product(models.Model):
     region = models.CharField(max_length=254, null=True, blank=True)
     variety = models.CharField(max_length=254, null=True, blank=True)
     altitude = models.CharField(max_length=20, null=True, blank=True)
+    strength = models.DecimalField(
+        null=True, blank=True, max_digits=2, decimal_places=0, validators=[
+            MinValueValidator(0), MaxValueValidator(10)])
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
 
