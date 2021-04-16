@@ -81,6 +81,13 @@ p {
     color: #fff;
 }
 
+.page-logo {
+    max-height: 280px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 85px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -173,10 +180,18 @@ span.nav-link:focus {
 /* Footer */
 
 footer {
-    background-color: #074F3C;
+    background-color: #000;
     color: #fff;
     height: fit-content;
 }
+
+/* Products */
+
+.product-card a {
+    text-decoration: none;
+    color: #000;
+}
+
 
 
 @media (max-width: 491px) {
