@@ -6,6 +6,8 @@ html {
 
 body {
     font-family: 'Spartan', sans-serif;
+    background-size: cover;
+    height: 80vh;
 }
 
 .container-fluid {

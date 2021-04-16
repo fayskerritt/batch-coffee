@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 page-logo"></div>
+    </div>
+</div>
+
+<div class="container h-100 pt-5">
+    <div class="row">
+        <div class="col-12 d-flex d-sm-none">
+            <h2 class="font-weight-bold text-uppercase">{{ product.name }}</h2>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+            {% else %}
+            <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top img-fluid" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="product-details">
+                <h2 class="font-weight-bold d-none d-sm-flex text-uppercase">{{ product.name }}</h2>
+                <h4 class="font-weight-bold mb-0">£{{ product.price }}</h4>
+                {% if product.region %}
+                <p><strong>Region: </strong>{{ product.region }}</p>
+                {% endif %}
+                {% if product.variety %}
+                <p><strong>Variety: </strong>{{ product.variety }}</p>
+                {% endif %}
+                {% if product.altitude %}
+                <p><strong>Altitude: </strong>{{ product.altitude }}</p>
+                {% endif %}
+                {% if product.strength %}
+                <p><strong>Strength: </strong>{{ product.strength }}/10</p>
+                {% endif %}
+                <p>{{ product.description }}</p>
+                <p><strong>Size: </strong>{{ product.bag_size }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
