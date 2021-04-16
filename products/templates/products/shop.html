@@ -9,8 +9,14 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{ products }}
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
-    <div class="banner-image w-100"></div>
     <div class="shop-banner text-center">
         <span>
             Check out our amazing range of Coffee
@@ -18,15 +24,5 @@
         </span>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-6 text-center my-auto py-5">
-            <p class="h4">Why choose Batch Coffee?</p><br>
-            <button class="dark-button">ABOUT US</button>
-        </div>
-        <div class="col-12 col-md-6 text-center my-auto">
-            <img class="home-img img-fluid" src="{{ MEDIA_URL }}coffeebags.jpg" alt="Coffee Bags">
-        </div>
-    </div>
-</div>
+
 {% endblock %}
