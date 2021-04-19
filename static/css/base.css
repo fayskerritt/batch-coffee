@@ -6,8 +6,6 @@ html {
 
 body {
     font-family: 'Spartan', sans-serif;
-    background-size: cover;
-    height: 80vh;
 }
 
 .container-fluid {
@@ -189,11 +187,19 @@ footer {
     height: fit-content;
 }
 
+.footer-space {
+    padding-bottom: 120px;
+}
+
 /* Products */
 
 .product-card a {
     text-decoration: none;
     color: #000;
+}
+
+.product-image {
+    padding-bottom: 15px;
 }
 
 
