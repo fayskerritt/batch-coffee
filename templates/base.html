@@ -64,7 +64,7 @@
                 <a href="{% url 'home' %}"><img class="nav-logo py-1" src="{{ MEDIA_URL }}whitelogo.png" alt="Logo"></a>
             </div>
             <div class="col-12 col-md-7 col-lg-5 text-right">
-                <form class="form-inline d-inline-block" method="GET" action="">
+                <form class="form-inline d-inline-block" method="GET" action="{% url 'products' %}">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" name="q" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
