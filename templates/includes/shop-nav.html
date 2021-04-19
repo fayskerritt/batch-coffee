@@ -28,11 +28,11 @@
                 WHOLE BEAN
             </a>
             <div class="dropdown-menu" aria-labelledby="wholebean-dropdown">
-                <a class="dropdown-item" href="#">ARABICA</a>
-                <a class="dropdown-item" href="#">ROBUSTA</a>
-                <a class="dropdown-item" href="#">LIBERICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=whole_bean&variety=arabica">ARABICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=whole_bean&variety=robusta">ROBUSTA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=whole_bean&variety=liberica">LIBERICA</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">ALL WHOLE BEAN</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=whole_bean">ALL WHOLE BEAN</a>
             </div>
         </li>
         <li class="nav-item dropdown">

@@ -17,6 +17,18 @@ class Category(models.Model):
         return self.display_name
 
 
+class Variety(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Varieties'
+
+    name = models.CharField(max_length=260)
+    display_name = models.CharField(max_length=260, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     BAG_SIZES = (
         ('250g', '250 grams'),
@@ -24,12 +36,14 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         'Category', null=True, on_delete=models.CASCADE)
+    variety = models.ForeignKey(
+        'Variety', null=True, on_delete=models.CASCADE)
     sku = models.CharField(max_length=254, null=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    bag_size = models.CharField(max_length=4, choices=BAG_SIZES)
+    bag_size = models.CharField(
+        max_length=4, choices=BAG_SIZES, default="250g")
     region = models.CharField(max_length=254, null=True, blank=True)
-    variety = models.CharField(max_length=254, null=True)
     altitude = models.CharField(max_length=20, null=True, blank=True)
     strength = models.DecimalField(
         null=True, max_digits=2, decimal_places=0, validators=[
