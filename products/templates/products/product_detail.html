@@ -25,11 +25,9 @@
             <div class="product-details">
                 <h2 class="font-weight-bold d-none d-sm-flex text-uppercase">{{ product.name }}</h2>
                 <h4 class="font-weight-bold mb-0">£{{ product.price }}</h4>
+                <p><strong>Variety: </strong>{{ product.variety.display_name }}</p>
                 {% if product.region %}
                 <p><strong>Region: </strong>{{ product.region }}</p>
-                {% endif %}
-                {% if product.variety %}
-                <p><strong>Variety: </strong>{{ product.variety }}</p>
                 {% endif %}
                 {% if product.altitude %}
                 <p><strong>Altitude: </strong>{{ product.altitude }}</p>

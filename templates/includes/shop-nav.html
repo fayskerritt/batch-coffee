@@ -41,11 +41,11 @@
                 CAFETIERE
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cafetiere-dropdown">
-                <a class="dropdown-item" href="#">ARABICA</a>
-                <a class="dropdown-item" href="#">ROBUSTA</a>
-                <a class="dropdown-item" href="#">LIBERICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=cafetiere&variety=arabica">ARABICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=cafetiere&variety=robusta">ROBUSTA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=cafetiere&variety=liberica">LIBERICA</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">ALL CAFETIERE</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=cafetiere">ALL CAFETIERE</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -54,11 +54,11 @@
                 FILTER
             </a>
             <div class="dropdown-menu" aria-labelledby="filter-dropdown">
-                <a class="dropdown-item" href="#">ARABICA</a>
-                <a class="dropdown-item" href="#">ROBUSTA</a>
-                <a class="dropdown-item" href="#">LIBERICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=filter&variety=arabica">ARABICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=filter&variety=robusta">ROBUSTA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=filter&variety=liberica">LIBERICA</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">ALL FILTER</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=filter">ALL FILTER</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -67,11 +67,11 @@
                 ESPRESSO
             </a>
             <div class="dropdown-menu" aria-labelledby="espresso-dropdown">
-                <a class="dropdown-item" href="#">ARABICA</a>
-                <a class="dropdown-item" href="#">ROBUSTA</a>
-                <a class="dropdown-item" href="#">LIBERICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=espresso&variety=arabica">ARABICA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=espresso&variety=robusta">ROBUSTA</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=espresso&variety=robusta">LIBERICA</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">ALL ESPRESSO</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=espresso">ALL ESPRESSO</a>
             </div>
         </li>
     </ul>

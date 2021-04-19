@@ -14,7 +14,7 @@
     <div class="text-center mt-3">
         <span>
             <h2>SHOP</h2>
-            <hr class="w-40 mb-3">
+            <hr class="w-50 mb-3">
         </span>
     </div>
 </div>
@@ -42,9 +42,7 @@
                         <div class="row">
                             <div class="col px-0">
                                 <h6 class="text-uppercase pt-2">{{ product.category.display_name }}</h6>
-                                {% if product.variety %}
-                                <p>Variety - {{ product.variety }}</p>
-                                {% endif %}
+                                <p>Variety - {{ product.variety.display_name }}</p>
                                 {% if product.strength %}
                                 <p> Strength - {{ product.strength }}</p>
                                 {% endif %}
