@@ -75,12 +75,30 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-4">
             <div class="card product-card h-100 border-0">
                 <a href="{% url 'product_detail' product.id %}">
-                    {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top card-image" alt="{{ product.name }}">
-                    {% else %}
-                    <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top card-image" alt="{{ product.name }}">
-                    {% endif %}
-
+                    <div class="card-image">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="product-details">
+                        <div class="row">
+                            <div class="col-12 px-0 text-center small">
+                                {% if product.region %}
+                                <p><strong>Region: </strong>{{ product.region }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 px-0 text-center small">
+                                {% if product.altitude %}
+                                <p><strong>Altitude: </strong>{{ product.altitude }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 px-0 text-center small">
+                                <p>{{ product.description }}</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body px-0">
                         <div class="row">
                             <div class="col-8 px-0">
