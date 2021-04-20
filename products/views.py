@@ -47,8 +47,9 @@ def all_products(request):
             variety = None
         elif 'variety' in request.GET and 'category' not in request.GET:
             variety = request.GET['variety'].split(',')
-            products = products.filter(variety__name__icontains=variety)
-            variety = Variety.objects.get(variety__name__in=variety)
+            print(f"VARIETY SPLIT: {variety}")
+            products = products.filter(variety__name__icontains=variety[0])
+            variety = Variety.objects.get(name__in=variety)
             category = None
         elif 'category' in request.GET and 'variety' in request.GET:
             category = request.GET['category']
@@ -75,6 +76,7 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
+    current_filter = variety
 
     context = {
         'products': products,
@@ -82,6 +84,7 @@ def all_products(request):
         'current_category': category,
         'current_variety': variety,
         'current_sorting': current_sorting,
+        'current_filter': current_filter,
     }
 
     return render(request, 'products/shop.html', context)

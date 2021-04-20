@@ -18,8 +18,8 @@
         </span>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6 my-auto d-flex justify-content-center order-md-last justify-content-md-end">
-            <div class="sort-select-wrapper w-50">
+        <div class="col-12 col-md-7 my-auto d-flex justify-content-center order-md-last justify-content-md-end">
+            <div class="sort-select-wrapper w-50 ml-2">
                 <select id="sort-box" class="custom-select custom-select-sm rounded-0 border-black">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort</option>
                     <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
@@ -41,8 +41,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-12 col-md-6 order-md-first">
+        <div class="col-12 col-md-5 order-md-first">
             <p class="text-muted mt-3 small text-left">
                 {% if search_term or current_category or current_sorting or current_variety != 'None_None' %}
                 <span class="small shop-breadcrumb"><a href="{% url 'products' %}">SHOP </a></span>
@@ -56,7 +55,7 @@
                 {% if current_variety %}
                 <span class="small px-2">></span>
                 <span class="small shop-breadcrumb text-uppercase"><a
-                        href="{% url 'products' %}?category={{ current_variety }}">{{ current_variety }}
+                        href="{% url 'products' %}?variety={{ current_variety }}">{{ current_variety.display_name }}
                     </a></span>
                 {% endif %}
                 {% if search_term %}
@@ -64,7 +63,7 @@
                 <span class="small px-2">Search results for<strong>"{{ search_term }}"</strong></span>
                 {% endif %}
             </p>
-            <p><small>{{ products|length }} Product{% if products|length > 1 %}s{% endif %}</small></p>
+            <p><small>{{ products|length }} Product{% if products|length != 1 %}s{% endif %}</small></p>
         </div>
     </div>
 </div>
@@ -176,4 +175,5 @@
         }
     })
 </script>
+
 {% endblock %}

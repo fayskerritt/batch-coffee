@@ -28,6 +28,9 @@ class Variety(models.Model):
     def __str__(self):
         return self.name
 
+    def get_display_name(self):
+        return self.display_name
+
 
 class Product(models.Model):
     BAG_SIZES = (
