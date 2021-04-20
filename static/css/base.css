@@ -195,6 +195,12 @@ footer {
 
 footer a {
     color: #fff;
+    transition: all .2s ease-out;
+}
+
+footer a:hover,
+footer a:focus {
+    color: #6c757d;
 }
 
 .footer-logo {
@@ -209,7 +215,7 @@ footer a {
     padding-bottom: 120px;
 }
 
-/* Products */
+/* Shop */
 
 .product-card a {
     text-decoration: none;
@@ -218,6 +224,18 @@ footer a {
 
 .product-image {
     padding-bottom: 15px;
+}
+
+#category-link a,
+#category-link a {
+    color: #000;
+    transition: all .1s ease-out;
+}
+
+#category-link a:hover,
+#category-link a:focus {
+    color: #000;
+    text-decoration: underline;
 }
 
 

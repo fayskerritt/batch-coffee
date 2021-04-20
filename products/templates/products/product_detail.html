@@ -25,6 +25,11 @@
             <div class="product-details">
                 <h2 class="font-weight-bold d-none d-sm-flex text-uppercase">{{ product.name }}</h2>
                 <h4 class="font-weight-bold mb-0">£{{ product.price }}</h4>
+                <h6 class="text-uppercase pt-2" id="category-link">
+                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                        {{ product.category.display_name }}
+                    </a>
+                </h6>
                 <p><strong>Variety: </strong>{{ product.variety.display_name }}</p>
                 {% if product.region %}
                 <p><strong>Region: </strong>{{ product.region }}</p>

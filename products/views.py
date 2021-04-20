@@ -15,6 +15,8 @@ def all_products(request):
     query = None
     category = None
     variety = None
+    sort = None
+    direction = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -23,6 +25,9 @@ def all_products(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
+
+            if sortkey == 'category':
+                sortkey = 'category__name'
 
             if sortkey == "strength":
                 sortkey = 'lower_strength'
@@ -61,9 +66,10 @@ def all_products(request):
                 messages.error(request, 'No search criteria entered!')
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(
-                description__icontains=query) | Q(
-                    region__icontains=query) | Q(variety__icontains=query)
+            queries = Q(name__icontains=query) |\
+                Q(description__icontains=query) |\
+                Q(region__icontains=query) |\
+                Q(variety__name__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'

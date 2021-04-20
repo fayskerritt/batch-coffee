@@ -10,12 +10,48 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container">
     <div class="text-center mt-3">
         <span>
             <h2>SHOP</h2>
             <hr class="w-50 mb-3">
         </span>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+            <div class="sort-select-wrapper w-50">
+                <select id="sort-selector"
+                    class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to
+                        high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high
+                        to low)</option>
+                    <option value="rating_asc" {% if current_sorting == 'strength_asc' %}selected{% endif %}>Strength
+                        (low
+                        to high)</option>
+                    <option value="rating_desc" {% if current_sorting == 'strength_desc' %}selected{% endif %}>Strength
+                        (high to low)</option>
+                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Grind
+                        (A-Z)</option>
+                    <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>
+                        Grind (Z-A)</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)
+                    </option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 order-md-first">
+            <p class="text-muted mt-3 small text-center text-md-left">
+                {% if search_term or current_categories or current_sorting != 'None_None' %}
+                <span class="small"><a href="{% url 'products' %}">SHOP</a> > </span>
+                {% endif %}
+                {{ products|length }} Product{% if products|length > 1 %}s{% endif %}{% if search_term %} found for
+                <strong>"{{ search_term }}"</strong>{% endif %}
+            </p>
+        </div>
     </div>
 </div>
 
@@ -40,11 +76,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col px-0">
-                                <h6 class="text-uppercase pt-2">{{ product.category.display_name }}</h6>
-                                <p>Variety - {{ product.variety.display_name }}</p>
+                            <div class="col-12 px-0">
+                                <h6 class="text-uppercase pt-2" id="category-link">
+                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                        {{ product.category.display_name }}
+                                    </a>
+                                </h6>
+                            </div>
+                            <div class="col-6 px-0 text-left">
+                                <small>Variety - {{ product.variety.display_name }}</small>
+                            </div>
+                            <div class="col-6 px-0 text-right">
                                 {% if product.strength %}
-                                <p> Strength - {{ product.strength }}</p>
+                                <small>Strength - {{ product.strength }}</small>
                                 {% endif %}
                             </div>
                         </div>
