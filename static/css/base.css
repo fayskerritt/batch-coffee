@@ -123,6 +123,7 @@ p {
 a.nav-link,
 span.nav-link {
     color: #fff !important;
+    font-size: 12px;
     transition: all .2s ease-out;
 }
 
@@ -146,6 +147,11 @@ span.nav-link:focus {
 .navbar-nav .dropdown-menu {
     position: absolute;
     float: none;
+}
+
+.navbar-nav .nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .navbar-dark .navbar-toggler {
@@ -185,6 +191,18 @@ footer {
     background-color: #000;
     color: #fff;
     height: fit-content;
+}
+
+footer a {
+    color: #fff;
+}
+
+.footer-logo {
+    height: 50px;
+}
+
+.footer-text {
+    font-size: 0.5rem;
 }
 
 .footer-space {
