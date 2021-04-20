@@ -257,6 +257,16 @@ footer a:focus {
     transition: opacity 0.2s ease-out;
 }
 
+.shop-breadcrumb a {
+    color: #000;
+    transition: all .2s ease-out;
+}
+
+.shop-breadcrumb a:hover,
+.shop-breadcrumb a:focus {
+    color: #6c757d;
+}
+
 
 
 @media (max-width: 491px) {

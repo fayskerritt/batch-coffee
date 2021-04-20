@@ -44,18 +44,19 @@ def all_products(request):
             category = request.GET['category']
             products = products.filter(category__name__icontains=category)
             category = Category.objects.get(name=category)
+            variety = None
         elif 'variety' in request.GET and 'category' not in request.GET:
             variety = request.GET['variety'].split(',')
-            products = products.filter(
-                variety__name__in=variety)
-            variety = Variety.objects.filter(name__in=variety)
+            products = products.filter(variety__name__icontains=variety)
+            variety = Variety.objects.get(variety__name__in=variety)
+            category = None
         elif 'category' in request.GET and 'variety' in request.GET:
             category = request.GET['category']
             variety = request.GET['variety']
             products = products.filter(category__name__contains=category).\
                 filter(variety__name__contains=variety)
             category = Category.objects.get(name=category)
-            variety = Variety.objects.filter(name=variety)
+            variety = Variety.objects.get(name=variety)
         else:
             messages.error(request, 'No matching products!')
 
@@ -69,6 +70,7 @@ def all_products(request):
             queries = Q(name__icontains=query) |\
                 Q(description__icontains=query) |\
                 Q(region__icontains=query) |\
+                Q(category__name__icontains=query) |\
                 Q(variety__name__icontains=query)
             products = products.filter(queries)
 
@@ -78,6 +80,7 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_category': category,
+        'current_variety': variety,
         'current_sorting': current_sorting,
     }
 

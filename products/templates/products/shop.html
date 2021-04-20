@@ -18,39 +18,53 @@
         </span>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+        <div class="col-12 col-md-6 my-auto d-flex justify-content-center order-md-last justify-content-md-end">
             <div class="sort-select-wrapper w-50">
-                <select id="sort-selector"
-                    class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to
-                        high)</option>
-                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high
-                        to low)</option>
-                    <option value="rating_asc" {% if current_sorting == 'strength_asc' %}selected{% endif %}>Strength
-                        (low
-                        to high)</option>
-                    <option value="rating_desc" {% if current_sorting == 'strength_desc' %}selected{% endif %}>Strength
-                        (high to low)</option>
-                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Grind
-                        (A-Z)</option>
+                <select id="sort-box" class="custom-select custom-select-sm rounded-0 border-black">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
+                        Price low to high</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
+                        Price high to low</option>
+                    <option value="strength_asc" {% if current_sorting == 'strength_asc' %}selected{% endif %}>
+                        Strength low to high</option>
+                    <option value="strength_desc" {% if current_sorting == 'strength_desc' %}selected{% endif %}>
+                        Strength high to low</option>
+                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>
+                        Grind A-Z</option>
                     <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>
-                        Grind (Z-A)</option>
-                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)
+                        Grind Z-A</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name A-Z
                     </option>
-                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name Z-A
                     </option>
                 </select>
             </div>
         </div>
+
         <div class="col-12 col-md-6 order-md-first">
-            <p class="text-muted mt-3 small text-center text-md-left">
-                {% if search_term or current_categories or current_sorting != 'None_None' %}
-                <span class="small"><a href="{% url 'products' %}">SHOP</a> > </span>
+            <p class="text-muted mt-3 small text-left">
+                {% if search_term or current_category or current_sorting or current_variety != 'None_None' %}
+                <span class="small shop-breadcrumb"><a href="{% url 'products' %}">SHOP </a></span>
                 {% endif %}
-                {{ products|length }} Product{% if products|length > 1 %}s{% endif %}{% if search_term %} found for
-                <strong>"{{ search_term }}"</strong>{% endif %}
+                {% if current_category %}
+                <span class="small px-2">></span>
+                <span class="small shop-breadcrumb text-uppercase"><a
+                        href="{% url 'products' %}?category={{ current_category }}">{{ current_category.display_name }}
+                    </a></span>
+                {% endif %}
+                {% if current_variety %}
+                <span class="small px-2">></span>
+                <span class="small shop-breadcrumb text-uppercase"><a
+                        href="{% url 'products' %}?category={{ current_variety }}">{{ current_variety }}
+                    </a></span>
+                {% endif %}
+                {% if search_term %}
+                <span class="small px-2">></span>
+                <span class="small px-2">Search results for<strong>"{{ search_term }}"</strong></span>
+                {% endif %}
             </p>
+            <p><small>{{ products|length }} Product{% if products|length > 1 %}s{% endif %}</small></p>
         </div>
     </div>
 </div>
@@ -62,10 +76,11 @@
             <div class="card product-card h-100 border-0">
                 <a href="{% url 'product_detail' product.id %}">
                     {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <img src="{{ product.image.url }}" class="card-img-top card-image" alt="{{ product.name }}">
                     {% else %}
-                    <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top" alt="{{ product.name }}">
+                    <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top card-image" alt="{{ product.name }}">
                     {% endif %}
+
                     <div class="card-body px-0">
                         <div class="row">
                             <div class="col-8 px-0">
@@ -99,6 +114,48 @@
         {% endfor %}
     </div>
 </div>
-<span id="back-to-top" title="Back to top"><i class="fa fa-chevron-up"></i></span>
+<a href="#" id="back-to-top" title="Back to top"><i class="fa fa-chevron-up"></i></a>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#back-to-top').hide();
+    });
+    $(function () {
+        $(window).scroll(function () {
+            var top_offset = $(window).scrollTop();
+            if (top_offset == 0) {
+                $('#back-to-top').hide();
+            } else {
+                $('#back-to-top').show();
+            }
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $('#sort-box').change(function () {
+        var selector = $(this);
+        var currentUrl = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if (selectedVal != "reset") {
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction);
+
+            window.location.replace(currentUrl);
+        } else {
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
+
+            window.location.replace(currentUrl);
+        }
+    })
+</script>
 {% endblock %}

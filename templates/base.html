@@ -35,6 +35,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -159,39 +160,6 @@
         </div>
     </footer>
     {% block postloadjs %}
-    <script>
-        $(function () {
-            $('#shop').click(function () {
-                if ($('#shop-nav').css('display') == 'none') {
-                    $('#shop-nav').removeClass('d-none');
-                } else {
-                    $('#shop-nav').addClass('d-none');
-                }
-            });
-        });
-        $(function () {
-            $('#search-dropdown').click(function () {
-                if ($('#mobile-search-bar').css('display') == 'none') {
-                    $('#mobile-search-bar').removeClass('d-none');
-                } else {
-                    $('#mobile-search-bar').addClass('d-none');
-                }
-            })
-        })
-        $(document).ready(function () {
-            $('#back-to-top').hide();
-        });
-        $(function () {
-            $(window).scroll(function () {
-                var top_offset = $(window).scrollTop();
-                if (top_offset == 0) {
-                    $('#back-to-top').hide();
-                } else {
-                    $('#back-to-top').show();
-                }
-            })
-        });
-    </script>
     {% endblock %}
 </body>
 
