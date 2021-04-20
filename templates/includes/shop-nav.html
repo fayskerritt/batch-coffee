@@ -15,9 +15,9 @@
                 ALL COFFEE
             </a>
             <div class="dropdown-menu" aria-labelledby="allcoffee-dropdown">
-                <a class="dropdown-item" href="#">BY PRICE</a>
-                <a class="dropdown-item" href="#">BY GRIND CATEGORY</a>
-                <a class="dropdown-item" href="#">BY STRENGTH</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">BY PRICE</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">BY GRIND CATEGORY</a>
+                <a class="dropdown-item" href="{% url 'products' %}?sort=strength&direction=asc">BY STRENGTH</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'products' %}">ALL COFFEE</a>
             </div>
