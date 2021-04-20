@@ -178,6 +178,19 @@
                 }
             })
         })
+        $(document).ready(function () {
+            $('#back-to-top').hide();
+        });
+        $(function () {
+            $(window).scroll(function () {
+                var top_offset = $(window).scrollTop();
+                if (top_offset == 0) {
+                    $('#back-to-top').hide();
+                } else {
+                    $('#back-to-top').show();
+                }
+            })
+        });
     </script>
     {% endblock %}
 </body>
