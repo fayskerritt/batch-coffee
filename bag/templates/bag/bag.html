@@ -23,33 +23,60 @@
 <div class="container">
     <div class="row">
         {% if bag_items %}
-        <div class="col">
-            {{ bag_items }}
-        </div>
         <div class="col-12">
-            <table class="table table-sm align-middle">
+        </div>
+        <div class="col-12 col-md-9">
+            <table class="table table-sm align-middle table-borderless ">
                 <thead>
                     <tr>
-                        <th scope="col">Item</th>
+                        <th scope="col" class="text-uppercase">Item</th>
                         <th scope="col"></th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Subtotal</th>
+                        <th scope="col" class="text-center text-uppercase">Size</th>
+                        <th scope="col" class="text-center text-uppercase">Quantity</th>
+                        <th scope="col" class="text-center text-uppercase">Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
+                    {% for item in bag_items %}
+                    <tr class="border p-2 m-3">
+                        <td class="w-25 align-middle">
+                            {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" class="bag-image img-fluid"
+                                alt="{{ product.name }}">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}no-image.png" class="bag-image img-fluid" alt="{{ product.name }}">
+                            {% endif %}
+                        </td>
+                        <td class="align-middle">
+                            <h4 class="font-weight-bold text-uppercase">{{ item.product.name }}</h4>
+                            <p class="text-uppercase pt-2" id="category-link">
+                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
+                                    {{ item.product.category.display_name }}
+                                </a>
+                            </p>
+                            <p class="small"><strong>Variety: </strong>{{ item.product.variety.display_name }}</p>
+                            {% if item.product.strength %}
+                            <p class="small"><strong>Strength: </strong>{{ item.product.strength }}/10</p>
+                            {% endif %}
+
+                        </td>
+                        <td class="align-middle">
+                            <p class="small text-center">{{ item.product.bag_size }}</p>
+                        </td>
+                        <td class="align-middle">
+                            <p class="small text-center">{{ item.quantity }}</p>
+                        </td class="align-middle">
+                        <td class="align-middle">
+                            <h6 class="font-weight-bold text-center">£{{ item.product.price }}</h4>
+                        </td>
                     </tr>
+
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
         {% else %}
-        <div class="col-12 text-center">
+        <div class="col-12 col-md-10 text-center">
             <div class="shop-banner text-center">
                 <span>
                     Your shopping bag is empty
@@ -60,6 +87,65 @@
             </div>
         </div>
         {% endif %}
+        <div class="col-12 col-md-3">
+            <table class="table table-sm align-middle table-borderless ">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-uppercase">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border p-2 m-3">
+                        <td>
+                            <p class="small text-center">SUB TOTAL</p>
+                        </td>
+                        <td>
+                            <p class="small text-center">£{{ total|floatformat:2 }}</p>
+                        </td>
+                    </tr>
+                    <tr class="border p-2 m-3">
+                        <td>
+                            <p class="small text-center">DELIVERY</p>
+                        </td>
+                        <td>
+                            <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
+                        </td>
+                    </tr>
+                    {% if total > settings.DISCOUNT_THRESHOLD %}
+                    <tr class="border p-2 m-3">
+                        <td>
+                            <p class="small text-center">DISCOUNT</p>
+                        </td>
+                        <td>
+                            <p class="small text-center">£-5</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr class="border p-2 m-3">
+                        <td>
+                            <p class="small text-center">TOTAL</p>
+                        </td>
+                        <td>
+                            <p class="small text-center">£{{ grand_total|floatformat:2 }}</p>
+                        </td>
+                    </tr>
+                    <tr class="p-2 m-3">
+                        <td colspan="2" class="text-center">
+                            <input type="submit" class="light-button rounded-0 text-uppercase mt-1" value="CHECKOUT">
+                        </td>
+                    </tr>
+                    <tr class="p-2 m-3">
+                        <td colspan="2" class="text-center">
+                            <a href="{% url 'products' %}">
+                                <button class="dark-button text-uppercase">Keep Shopping</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
 {% endblock %}

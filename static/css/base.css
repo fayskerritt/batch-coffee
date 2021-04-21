@@ -217,6 +217,7 @@ footer a:focus {
 
 .footer-space {
     padding-bottom: 120px;
+    bottom: 0;
 }
 
 /* Shop */
