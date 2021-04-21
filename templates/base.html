@@ -96,10 +96,10 @@
                         </div>
                     </li>
                     <li class="nav-item list-inline-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                            {% if items in cart %}
-                            items
+                        <a class="nav-link" href="{% url 'shopping_bag' %}">
+                            <i class="fas fa-shopping-bag"></i>
+                            {% if items in bag %}
+                            <!-- items - add this in once bag created -->
                             {% else %}
                             0
                             {% endif %}
