@@ -17,6 +17,14 @@
             <hr class="w-50 mb-3">
         </span>
     </div>
+    <!-- Variety buttons -->
+    <div class="row">
+        <div class="col-12 my-auto d-flex justify-content-center justify-content-md-end">
+
+
+        </div>
+    </div>
+    <!-- Sort dropdown -->
     <div class="row">
         <div class="col-12 col-md-7 my-auto d-flex justify-content-center order-md-last justify-content-md-end">
             <div class="sort-select-wrapper w-50 ml-2">
@@ -41,6 +49,7 @@
                 </select>
             </div>
         </div>
+        <!-- Breadcrumb -->
         <div class="col-12 col-md-5 order-md-first">
             <p class="text-muted mt-3 small text-left">
                 {% if search_term or current_category or current_sorting or current_variety != 'None_None' %}
@@ -55,9 +64,22 @@
                 {% if current_variety %}
                 <span class="small px-2">></span>
                 <span class="small shop-breadcrumb text-uppercase"><a
-                        href="{% url 'products' %}?variety={{ current_variety }}">{{ current_variety.display_name }}
+                        href="{% url 'products' %}?variety={% for variety in current_variety %}{{ variety.name }}{% endfor %}">
+                        {% for variety in current_variety %}
+                        {{ variety.display_name }}
+                        {% endfor %}
                     </a></span>
+                {% else %}
+                <span class="small px-2">></span>
+                {% for v in varieties %}
+                <span class="shop-breadcrumb breadcrumb-option small text-uppercase mx-2 p-1">
+                    <a class="" href="{% url 'products' %}?variety={{ v.name }}">
+                        {{ v.display_name }}
+                    </a>
+                </span>
+                {% endfor %}
                 {% endif %}
+
                 {% if search_term %}
                 <span class="small px-2">></span>
                 <span class="small px-2">Search results for<strong>"{{ search_term }}"</strong></span>

@@ -4,6 +4,10 @@ html {
 
 /* General */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Spartan', sans-serif;
 }
@@ -285,6 +289,10 @@ footer a:focus {
 
 .card-image:hover .product-details {
     height: 100%;
+}
+
+.breadcrumb-option {
+    border: 1px solid #ced4da;
 }
 
 
