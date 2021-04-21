@@ -103,19 +103,16 @@
                         <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top" alt="{{ product.name }}">
                         {% endif %}
                     </div>
-                    <div class="product-details">
-                        <div class="row">
-                            <div class="col-12 px-0 text-center small">
+
+                    <div class="product-details my-auto">
+                        <div class="row h-100">
+                            <div class="col-12 px-1 text-center small my-auto">
                                 {% if product.region %}
                                 <p><strong>Region: </strong>{{ product.region }}</p>
                                 {% endif %}
-                            </div>
-                            <div class="col-12 px-0 text-center small">
                                 {% if product.altitude %}
                                 <p><strong>Altitude: </strong>{{ product.altitude }}</p>
                                 {% endif %}
-                            </div>
-                            <div class="col-12 px-0 text-center small">
                                 <p>{{ product.description }}</p>
                             </div>
                         </div>
