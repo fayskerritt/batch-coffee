@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
@@ -19,5 +20,43 @@
     </div>
 </div>
 
-
+<div class="container">
+    <div class="row">
+        {% if bag_items %}
+        <div class="col-12">
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col"></th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <div class="shop-banner text-center">
+                <span>
+                    Your shopping bag is empty
+                    <a href="{% url 'products' %}">
+                        <button class="light-button mx-4">BACK TO SHOP</button>
+                    </a>
+                </span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
