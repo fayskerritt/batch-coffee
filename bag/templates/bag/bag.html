@@ -65,54 +65,53 @@
                             <p class="small text-center">{{ item.product.bag_size }}</p>
                         </td>
                         <td class="align-middle">
-                            <form class="update-form" action="" method="POST">
+                            <form class="update-form" action="{% url 'update_bag' item.product_id %}" method="POST">
                                 {% csrf_token %}
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <select class="form-control qty_input custom-select rounded-0 update-qty"
-                                            name="quantity" value="{{ item.quantity }}"
-                                            data-product_id="{{ item.product.id }}" id="id_qty_{{ item.product.id }}">
-                                            <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1
-                                            </option>
-                                            <option value="2" {% if item.quantity == 2 %}selected{% endif %}>2
-                                            </option>
-                                            <option value="3" {% if item.quantity == 3 %}selected{% endif %}>3
-                                            </option>
-                                            <option value="4" {% if item.quantity == 4 %}selected{% endif %}>4
-                                            </option>
-                                            <option value="5" {% if item.quantity == 5 %}selected{% endif %}>5
-                                            </option>
-                                            <option value="6" {% if item.quantity == 6 %}selected{% endif %}>6
-                                            </option>
-                                            <option value="7" {% if item.quantity == 7 %}selected{% endif %}>7
-                                            </option>
-                                            <option value="8" {% if item.quantity == 8 %}selected{% endif %}>8
-                                            </option>
-                                            <option value="9" {% if item.quantity == 9 %}selected{% endif %}>9
-                                            </option>
-                                            <option value="10" {% if item.quantity == 10 %}selected{% endif %}>10
-                                            </option>
-                                        </select>
+                                <div class="quantity-update">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <select class="form-control qty_input custom-select rounded-0 update-qty"
+                                                name="quantity" value="{{ item.quantity }}"
+                                                data-product_id="{{ item.product.id }}"
+                                                id="id_qty_{{ item.product.id }}">
+                                                <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1
+                                                </option>
+                                                <option value="2" {% if item.quantity == 2 %}selected{% endif %}>2
+                                                </option>
+                                                <option value="3" {% if item.quantity == 3 %}selected{% endif %}>3
+                                                </option>
+                                                <option value="4" {% if item.quantity == 4 %}selected{% endif %}>4
+                                                </option>
+                                                <option value="5" {% if item.quantity == 5 %}selected{% endif %}>5
+                                                </option>
+                                                <option value="6" {% if item.quantity == 6 %}selected{% endif %}>6
+                                                </option>
+                                                <option value="7" {% if item.quantity == 7 %}selected{% endif %}>7
+                                                </option>
+                                                <option value="8" {% if item.quantity == 8 %}selected{% endif %}>8
+                                                </option>
+                                                <option value="9" {% if item.quantity == 9 %}selected{% endif %}>9
+                                                </option>
+                                                <option value="10" {% if item.quantity == 10 %}selected{% endif %}>10
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="update-button" class="align-middle d-none">
-                                    <table class="table table-borderless">
-                                        <tr>
-                                            <td class="text-center">
+                                    <div class="update-button text-center d-none mx-auto">
+                                        <ul class="list-unstyled">
+                                            <li>
                                                 <input type="submit"
-                                                    class="light-button small rounded-0 text-uppercase m-0"
+                                                    class="light-button small rounded-0 text-uppercase my-1 mx-auto"
                                                     value="Update">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">
-                                                <button id="cancel-button"
-                                                    class="light-button small rounded-0 text-uppercase m-0">
+                                            </li>
+                                            <li>
+                                                <button
+                                                    class="cancel-button light-button small rounded-0 text-uppercase my-1 mx-auto">
                                                     Cancel
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </form>
                         </td class="align-middle">
@@ -214,16 +213,17 @@
 <script type="text/javascript">
     $(function () {
         $('.update-qty').change(function () {
-            $('#update-button').removeClass('d-none');
-            $('#update-button').addClass('d-flex');
+            $(this).closest(".quantity-update").find(".update-button").removeClass('d-none');
+            $(this).closest(".quantity-update").find(".update-button").addClass('d-block');
         })
     })
 </script>
+
 <script type="text/javascript">
     $(function () {
-        $('#cancel-button').click(function () {
-            $('#update-button').removeClass('d-flex');
-            $('#update-button').addClass('d-none');
+        $('.cancel-button').click(function () {
+            $('.update-button').removeClass('d-block');
+            $('.update-button').addClass('d-none');
         })
     })
 </script>
