@@ -75,18 +75,6 @@
                 </tbody>
             </table>
         </div>
-        {% else %}
-        <div class="col-12 col-md-10 text-center">
-            <div class="shop-banner text-center">
-                <span>
-                    Your shopping bag is empty
-                    <a href="{% url 'products' %}">
-                        <button class="light-button mx-4">BACK TO SHOP</button>
-                    </a>
-                </span>
-            </div>
-        </div>
-        {% endif %}
         <div class="col-12 col-md-3">
             <table class="table table-sm align-middle table-borderless ">
                 <thead>
@@ -145,6 +133,19 @@
                 </tbody>
             </table>
         </div>
+        {% else %}
+        <div class="col-12 col-md-8 offset-md-2 text-center ">
+            <div class="text-center">
+                <span>
+                    <i class="fas fa-shopping-bag fa-lg pt-5"></i>
+                    <p class="my-4">Your shopping bag is empty</p>
+                    <a href="{% url 'products' %}">
+                        <button class="dark-button mx-4">BACK TO SHOP</button>
+                    </a>
+                </span>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 
