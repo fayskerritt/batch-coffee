@@ -26,6 +26,13 @@ p {
     margin-bottom: 10px;
 }
 
+.messages {
+    position: fixed;
+    top: 87px;
+    right: 20px;
+    z-index: 999999;
+}
+
 /* Homepage */
 
 .home-logo {
