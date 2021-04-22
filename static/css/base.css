@@ -305,6 +305,16 @@ footer a:focus {
     border: 1px solid #ced4da;
 }
 
+.input-group .qty-input {
+    min-width: 30px;
+    max-width: 50px;
+}
+
+.delete-x a {
+    color: #000;
+    padding-right: 5px;
+}
+
 
 
 @media (max-width: 491px) {

@@ -26,14 +26,15 @@
         <div class="col-12">
         </div>
         <div class="col-12 col-md-9">
-            <table class="table table-sm align-middle table-borderless ">
+            <table class="table table-sm align-middle table-borderless">
                 <thead>
                     <tr>
                         <th scope="col" class="text-uppercase">Item</th>
                         <th scope="col"></th>
                         <th scope="col" class="text-center text-uppercase">Size</th>
-                        <th scope="col" class="text-center text-uppercase">Quantity</th>
+                        <th scope="col" class="text-center text-uppercase">Qty</th>
                         <th scope="col" class="text-center text-uppercase">Price</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,10 +65,66 @@
                             <p class="small text-center">{{ item.product.bag_size }}</p>
                         </td>
                         <td class="align-middle">
-                            <p class="small text-center">{{ item.quantity }}</p>
+                            <form class="update-form" action="" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select class="form-control qty_input custom-select rounded-0 update-qty"
+                                            name="quantity" value="{{ item.quantity }}"
+                                            data-product_id="{{ item.product.id }}" id="id_qty_{{ item.product.id }}">
+                                            <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1
+                                            </option>
+                                            <option value="2" {% if item.quantity == 2 %}selected{% endif %}>2
+                                            </option>
+                                            <option value="3" {% if item.quantity == 3 %}selected{% endif %}>3
+                                            </option>
+                                            <option value="4" {% if item.quantity == 4 %}selected{% endif %}>4
+                                            </option>
+                                            <option value="5" {% if item.quantity == 5 %}selected{% endif %}>5
+                                            </option>
+                                            <option value="6" {% if item.quantity == 6 %}selected{% endif %}>6
+                                            </option>
+                                            <option value="7" {% if item.quantity == 7 %}selected{% endif %}>7
+                                            </option>
+                                            <option value="8" {% if item.quantity == 8 %}selected{% endif %}>8
+                                            </option>
+                                            <option value="9" {% if item.quantity == 9 %}selected{% endif %}>9
+                                            </option>
+                                            <option value="10" {% if item.quantity == 10 %}selected{% endif %}>10
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="update-button" class="align-middle d-none">
+                                    <table class="table table-borderless">
+                                        <tr>
+                                            <td class="text-center">
+                                                <input type="submit"
+                                                    class="light-button small rounded-0 text-uppercase m-0"
+                                                    value="Update">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">
+                                                <button id="cancel-button"
+                                                    class="light-button small rounded-0 text-uppercase m-0">
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
                         </td class="align-middle">
                         <td class="align-middle">
                             <h6 class="font-weight-bold text-center">£{{ item.product.price }}</h4>
+                        </td>
+                        <td class="text-right">
+                            <div class="delete-x text-right">
+                                <a href="#">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
 
@@ -148,5 +205,27 @@
         {% endif %}
     </div>
 </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $(function () {
+        $('.update-qty').change(function () {
+            $('#update-button').removeClass('d-none');
+            $('#update-button').addClass('d-flex');
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#cancel-button').click(function () {
+            $('#update-button').removeClass('d-flex');
+            $('#update-button').addClass('d-none');
+        })
+    })
+</script>
 
 {% endblock %}
