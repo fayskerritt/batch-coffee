@@ -315,6 +315,11 @@ footer a:focus {
     padding-right: 5px;
 }
 
+.threshold-notification {
+    background-color: #074F3C;
+    color: #fff;
+}
+
 
 
 @media (max-width: 491px) {

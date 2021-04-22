@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 
 def shopping_bag(request):
@@ -32,7 +32,18 @@ def update_bag(request, product_id):
     if quantity > 0:
         bag[product_id] = quantity
     else:
-        bag.pop[product_id]
+        bag.pop(product_id)
+
+    request.session['bag'] = bag
+    return redirect(reverse('shopping_bag'))
+
+
+def remove_from_bag(request, product_id):
+    """ Remove item from shopping bag """
+
+    bag = request.session.get('bag', {})
+
+    bag.pop(product_id)
 
     request.session['bag'] = bag
     return redirect(reverse('shopping_bag'))

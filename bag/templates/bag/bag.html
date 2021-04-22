@@ -120,7 +120,7 @@
                         </td>
                         <td class="text-right">
                             <div class="delete-x text-right">
-                                <a href="#">
+                                <a href="{% url 'remove_from_bag' item.product_id %}">
                                     <i class="fas fa-times"></i>
                                 </a>
                             </div>
@@ -156,17 +156,22 @@
                             <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
                         </td>
                     </tr>
-                    {% if total > settings.DISCOUNT_THRESHOLD %}
+                    {% if total > discount_threshold %}
+                    <tr class="border">
+                        <td colspan="2" class="text-center p-0">
+                            <p class="threshold-notification text-uppercase m-0"><small>You spent over £50!</small></p>
+                        </td>
+                    </tr>
                     <tr class="border p-2 m-3">
                         <td>
                             <p class="small text-center">DISCOUNT</p>
                         </td>
                         <td>
-                            <p class="small text-center">£-5</p>
+                            <p class="small text-center text-success">-£5</p>
                         </td>
                     </tr>
                     {% endif %}
-                    <tr class="border p-2 m-3">
+                    <tr class=" border p-2 m-3">
                         <td>
                             <p class="small text-center">TOTAL</p>
                         </td>
