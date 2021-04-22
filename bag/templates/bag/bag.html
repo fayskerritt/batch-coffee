@@ -70,7 +70,7 @@
                                 <div class="quantity-update">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <select class="form-control qty_input custom-select rounded-0 update-qty"
+                                            <select class="form-control custom-select rounded-0 update-qty"
                                                 name="quantity" value="{{ item.quantity }}"
                                                 data-product_id="{{ item.product.id }}"
                                                 id="id_qty_{{ item.product.id }}">
@@ -221,9 +221,12 @@
 
 <script type="text/javascript">
     $(function () {
+        var currentQty = $('.update-qty').val();
         $('.cancel-button').click(function () {
             $('.update-button').removeClass('d-block');
             $('.update-button').addClass('d-none');
+
+            $('.update-qty').val(currentQty);
         })
     })
 </script>
