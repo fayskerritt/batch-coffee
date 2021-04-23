@@ -75,6 +75,18 @@ p {
     transition: all .2s ease-out;
 }
 
+.light-button-sm {
+    background: #fff;
+    border: solid 1px #000;
+    color: #000;
+    padding: 6px 6px 3px 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: all .2s ease-out;
+}
+
+.light-button-sm:hover,
+.light-button-sm:focus,
 .light-button:hover,
 .light-button:focus {
     background-color: #cbe0da;
@@ -99,6 +111,13 @@ p {
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 85px;
+}
+
+
+/* Toasts */
+
+.toast-body p {
+    word-spacing: 3px;
 }
 
 /* Navbar */
