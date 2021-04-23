@@ -22,10 +22,12 @@ def bag_contents(request):
             'product': product,
         })
 
-    if total > settings.DISCOUNT_THRESHOLD:
-        discount = settings.DISCOUNT_AMOUNT
-    else:
+    if total < settings.DISCOUNT_THRESHOLD:
+        discount_difference = settings.DISCOUNT_THRESHOLD - total
         discount = 0
+    else:
+        discount = settings.DISCOUNT_AMOUNT
+        discount_difference = 0
 
     discounted_total = Decimal(total) - Decimal(discount)
 
@@ -38,6 +40,7 @@ def bag_contents(request):
         'delivery': delivery,
         'discount_threshold': settings.DISCOUNT_THRESHOLD,
         'discount': settings.DISCOUNT_AMOUNT,
+        'discount_difference': discount_difference,
         'grand_total': grand_total,
     }
 

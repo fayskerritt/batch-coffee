@@ -142,7 +142,7 @@
                 <tbody>
                     <tr class="border p-2 m-3">
                         <td>
-                            <p class="small text-center">SUB TOTAL</p>
+                            <p class="small">SUB TOTAL</p>
                         </td>
                         <td>
                             <p class="small text-center">£{{ total|floatformat:2 }}</p>
@@ -150,7 +150,7 @@
                     </tr>
                     <tr class="border p-2 m-3">
                         <td>
-                            <p class="small text-center">DELIVERY</p>
+                            <p class="small">DELIVERY</p>
                         </td>
                         <td>
                             <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
@@ -164,7 +164,7 @@
                     </tr>
                     <tr class="border p-2 m-3">
                         <td>
-                            <p class="small text-center">DISCOUNT</p>
+                            <p class="small">DISCOUNT</p>
                         </td>
                         <td>
                             <p class="small text-center text-success">-£5</p>
@@ -173,19 +173,28 @@
                     {% endif %}
                     <tr class=" border p-2 m-3">
                         <td>
-                            <p class="small text-center">TOTAL</p>
+                            <p class="small">TOTAL</p>
                         </td>
                         <td>
                             <p class="small text-center">£{{ grand_total|floatformat:2 }}</p>
                         </td>
                     </tr>
-                    <tr class="p-2 m-3">
-                        <td colspan="2" class="text-center">
+                    <tr>
+                        <td colspan="2" class="p-0">
+                            {% if discount_difference > 0 %}
+                            <p class="discount-spend p-2 small text-uppercase text-center">
+                                Spend <strong>£{{ discount_difference }}</strong> more to get £5 off!
+                            </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="m-3">
+                        <td colspan="2" class="text-center pt-3">
                             <input type="submit" class="light-button rounded-0 text-uppercase mt-1" value="CHECKOUT">
                         </td>
                     </tr>
-                    <tr class="p-2 m-3">
-                        <td colspan="2" class="text-center">
+                    <tr>
+                        <td colspan="2" class="text-center p-0">
                             <a href="{% url 'products' %}">
                                 <button class="dark-button text-uppercase">Keep Shopping</button>
                             </a>

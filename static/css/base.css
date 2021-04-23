@@ -120,6 +120,18 @@ p {
     word-spacing: 3px;
 }
 
+.toast-bag {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.discount-spend {
+    background-color: #074F3C;
+    color: #fff;
+}
+
+
 /* Navbar */
 
 .navbar {
@@ -339,6 +351,11 @@ footer a:focus {
 .delete-x a {
     color: #000;
     padding-right: 5px;
+}
+
+.cancel-button {
+    cursor: pointer;
+    font-size: 10px;
 }
 
 .threshold-notification {

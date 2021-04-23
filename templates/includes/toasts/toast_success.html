@@ -9,7 +9,48 @@
                 aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="toast-body">
-            <p class="text-uppercase m-0">{{ message }}</p>
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-uppercase m-0">{{ message }}</p>
+                    <hr class="mt-1 mb-3">
+                </div>
+            </div>
+            {% if grand_total %}
+            <p class="font-weight-bold text-uppercase py-1">Your Shopping Bag ({{ product_count }})</p>
+            <div class="toast-bag">
+                {% for item in bag_items %}
+                <div class="row">
+                    <div class="col-3 mb-1">
+                        <img class="w-100" src="{{ item.product.image.url }}">
+                    </div>
+                    <div class="col-9">
+                        <p class="my-0 text-uppercase"><strong>{{ item.product.name }}</strong></p>
+                        <p class="my-0 small text-uppercase text-muted">Qty: {{ item.quantity }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-12 border-top">
+                    <strong>
+                        <p class="mt-3 mb-1 text-uppercase">
+                            Total <small>(EXCLUDING DELIVERY)</small>:
+                            <span class="float-right">£{{ total|floatformat:2 }}</span>
+                        </p>
+                    </strong>
+                    {% if discount_difference > 0 %}
+                    <p class="discount-spend mb-0 py-1 text-uppercase text-center">
+                        Spend <strong>£{{ discount_difference }}</strong> more to get £5 off!
+                    </p>
+                    {% endif %}
+                </div>
+                <div class="col-12 mt-4 text-center">
+                    <a href="{% url 'shopping_bag' %}" class="light-button rounded-0">
+                        <span class="text-uppercase">Checkout Now</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
