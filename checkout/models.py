@@ -70,7 +70,7 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override original save method to set lineitem total 
+        Override original save method to set lineitem total
         and update order total
         """
 
