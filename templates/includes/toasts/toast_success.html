@@ -1,5 +1,5 @@
 <div class="p-3 rounded-0">
-    <div id="toast" class="toast hide" role="alert" data-delay="100000" aria-live="assertive" aria-atomic="true">
+    <div id="toast" class="toast hide" role="alert" data-delay="20000" aria-live="assertive" aria-atomic="true">
         <div class="toast-header text-dark py-0">
 
             <p class="mr-auto text-success"><strong><i class="far fa-thumbs-up fa-lg pl-3 pr-2"></i></strong>
@@ -15,7 +15,7 @@
                     <hr class="mt-1 mb-3">
                 </div>
             </div>
-            {% if grand_total %}
+            {% if product_count != 0 %}
             <p class="font-weight-bold text-uppercase py-1">Your Shopping Bag ({{ product_count }})</p>
             <div class="toast-bag">
                 {% for item in bag_items %}

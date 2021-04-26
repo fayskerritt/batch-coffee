@@ -35,13 +35,12 @@ class Order(models.Model):
         """Update grand total each time a line item is added inc delivery"""
 
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
-            'lineitem_total__sum']
+            'lineitem_total__sum'] or 0
         if self.order_total > settings.DISCOUNT_THRESHOLD:
             self.order_total = self.order_total - settings.DISCOUNT_AMOUNT
-            self.delivery_cost = 3.99
+            self.delivery_cost = settings.DELIVERY_COST
         else:
-            self.order_total = self.order_total
-            self.delivery_cost = 3.99
+            self.delivery_cost = settings.DELIVERY_COST
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
 
@@ -60,8 +59,7 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(
-        Order, null=False, blank=False,
-        on_delete=models.CASCADE, related_name='lineitems')
+        Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)

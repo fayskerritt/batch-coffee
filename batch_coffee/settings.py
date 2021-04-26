@@ -173,6 +173,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DELIVERY_COST = 3.99
+# Checkout Variables
+
+DELIVERY_COST = 3
 DISCOUNT_THRESHOLD = 50
 DISCOUNT_AMOUNT = 5
+
+# Stripe
+
+STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
