@@ -183,8 +183,12 @@
                     <p class="text-uppercase semi-bold">Sub-Total</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize mt-2">
-                    <p>£{{ order.sub_total }}
-
+                    <p>£
+                        {% if sub_total >= 50 %}
+                        {{ order.sub_total }}
+                        {% else %}
+                        {{ order.order_total }}
+                        {% endif %}
                     </p>
                 </div>
             </div>
