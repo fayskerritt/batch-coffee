@@ -156,7 +156,7 @@
                             <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
                         </td>
                     </tr>
-                    {% if total > discount_threshold %}
+                    {% if total >= discount_threshold %}
                     <tr class="border">
                         <td colspan="2" class="text-center p-0">
                             <p class="threshold-notification text-uppercase m-0"><small>You spent over £50!</small></p>
