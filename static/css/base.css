@@ -33,6 +33,10 @@ p {
     z-index: 999999;
 }
 
+.semi-bold {
+    font-weight: 600;
+}
+
 /* Homepage */
 
 .home-logo {
