@@ -368,6 +368,13 @@ footer a:focus {
 }
 
 
+/* Profile */
+
+.side-menu a {
+    color: #000;
+}
+
+
 
 @media (max-width: 491px) {
     .navbar-nav {
