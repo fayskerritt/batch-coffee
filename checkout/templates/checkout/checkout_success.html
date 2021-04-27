@@ -131,10 +131,10 @@
             <div class="row">
                 <div class="col-12 border-bottom">
                     <h4 class="text-uppercase mt-5 mb-3">
-                        {% if order.order_quantity == 1 %}
-                        {{ order.order_quantity }}Item
+                        {% if order.get_total_items != 1 %}
+                        {{ order.get_total_items }} Items
                         {% else %}
-                        {{ order.order_quantity }}Items
+                        {{ order.get_total_items }} Item
                         {% endif %}
                     </h4>
                 </div>

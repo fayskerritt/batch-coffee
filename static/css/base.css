@@ -38,6 +38,10 @@ p {
     font-weight: 600;
 }
 
+.link a {
+    color: #000;
+}
+
 /* Homepage */
 
 .home-logo {
@@ -373,6 +377,33 @@ footer a:focus {
 
 .side-menu a {
     color: #000;
+}
+
+
+/* Allauth */
+
+.allauth-content p {
+    margin-top: 20px;
+    color: #000;
+}
+
+.allauth-content h2,
+.allauth-content button,
+.allauth-content .light-button {
+    text-transform: uppercase;
+}
+
+.allauth-content input {
+    border-color: #000;
+    border-radius: 0;
+}
+
+.allauth-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-content input::placeholder {
+    color: #aab7c4;
 }
 
 

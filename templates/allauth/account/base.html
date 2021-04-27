@@ -1,1 +1,19 @@
 {% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="page-logo" src="{{ MEDIA_URL }}blacklogo.png" alt="Logo">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="allauth-content col-12 col-md-6 offset-md-3">
+            {% block inner_content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -74,13 +74,11 @@ class Order(models.Model):
         delivery_time = timedelta(days=2)
         self.expected_delivery_date = self.date + delivery_time
 
-    def order_quantity_total(self):
+    def get_total_items(self):
         """Get total no. of items in order"""
-
-        self.order_quantity = self.lineitems.aggregate(
-            Sum('quantity'))['orderlineitem_quantity__sum'] or 0
-        print(f'ORDER QUANTITY {self.order_quantity}')
-        return self.order_quantity
+        total_items = self.lineitems.aggregate(Sum('quantity'))[
+            'quantity__sum']
+        return total_items
 
     def __str__(self):
         return self.order_number
