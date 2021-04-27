@@ -386,4 +386,8 @@ footer a:focus {
         height: 100px;
     }
 
+    .page-logo {
+        margin-top: 100px;
+    }
+
 }

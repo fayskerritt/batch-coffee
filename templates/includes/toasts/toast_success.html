@@ -45,8 +45,11 @@
                     {% endif %}
                 </div>
                 <div class="col-12 mt-4 text-center">
-                    <a href="{% url 'shopping_bag' %}" class="light-button rounded-0">
-                        <span class="text-uppercase">Checkout Now</span>
+                    <a href="{% url 'shopping_bag' %}" class="text-decoration-none">
+                        <button class="text-uppercase dark-button rounded-0">View Bag</button>
+                    </a>
+                    <a href="{% url 'checkout' %}">
+                        <button class="text-uppercase light-button rounded-0">Checkout Now</button>
                     </a>
                 </div>
             </div>

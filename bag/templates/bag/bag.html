@@ -148,14 +148,6 @@
                             <p class="small text-center">£{{ total|floatformat:2 }}</p>
                         </td>
                     </tr>
-                    <tr class="border p-2 m-3">
-                        <td>
-                            <p class="small">DELIVERY</p>
-                        </td>
-                        <td>
-                            <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
-                        </td>
-                    </tr>
                     {% if total >= discount_threshold %}
                     <tr class="border">
                         <td colspan="2" class="text-center p-0">
@@ -171,6 +163,14 @@
                         </td>
                     </tr>
                     {% endif %}
+                    <tr class="border p-2 m-3">
+                        <td>
+                            <p class="small">DELIVERY</p>
+                        </td>
+                        <td>
+                            <p class="small text-center">£{{ delivery|floatformat:2 }}</p>
+                        </td>
+                    </tr>
                     <tr class=" border p-2 m-3">
                         <td>
                             <p class="small">TOTAL</p>

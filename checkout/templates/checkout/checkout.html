@@ -48,16 +48,16 @@
                             Sub-Total:
                             <span class="float-right">£{{ total|floatformat:2 }}</span>
                         </p>
-                        <p class="mt-3 mb-1 text-uppercase font-weight-normal">
-                            Delivery:
-                            <span class="float-right">£{{ delivery|floatformat:2 }}</span>
-                        </p>
                         {% if total > discount_threshold %}
                         <p class="mt-3 mb-1 text-uppercase font-weight-normal">
                             Discount:
                             <span class="float-right text-success">-£5</span>
                         </p>
                         {% endif %}
+                        <p class="mt-3 mb-1 text-uppercase font-weight-normal">
+                            Delivery:
+                            <span class="float-right">£{{ delivery|floatformat:2 }}</span>
+                        </p>
                         <p class="mt-3 mb-1 text-uppercase">
                             Total:
                             <span class="float-right">£{{ grand_total|floatformat:2 }}</span>

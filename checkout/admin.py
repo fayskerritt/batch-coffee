@@ -21,8 +21,8 @@ class OrderAdmin(admin.ModelAdmin):
               'delivery_cost', 'sub_total', 'order_total', 'grand_total',
               'original_bag', 'stripe_pid',)
 
-    list_display = ('order_number', 'date', 'full_name',
-                    'delivery_cost', 'sub_total', 'order_total',
+    list_display = ('order_number', 'date', 'expected_delivery_date',
+                    'full_name', 'delivery_cost', 'sub_total', 'order_total',
                     'grand_total',)
 
     ordering = ('-date',)

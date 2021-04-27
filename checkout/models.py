@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from datetime import datetime, timedelta
 
 from products.models import Product
 
@@ -60,6 +61,11 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
+
+        delivery_time = timedelta(days=2)
+        print(f'DATE {self.date}')
+        print(f'EXPECTED {self.expected_delivery_date}')
+        self.expected_delivery_date = self.date + delivery_time
 
     def __str__(self):
         return self.order_number

@@ -30,8 +30,10 @@
             <p>Your order details are below and a confirmation email has been sent to <strong>{{ order.email }}</strong>
             </p>
         </div>
-        <div class="col-12 col-md-7">
+        <div class="col-12 col-md-4">
 
+        </div>
+        <div class="col-12 col-md-8">
             <div class="row pt-5">
                 <div class="col-12 col-md-4">
                     <p class="text-uppercase semi-bold"><i class="fas fa-box"></i> Order Number</p>
@@ -49,10 +51,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="text-uppercase semi-bold"><i class="fas fa-truck"></i></i> Estimated Delivery Date</p>
+                </div>
+                <div class="col-12 col-md-8">
+                    <p>{{ order.expected_delivery_date }}</p>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12 border-bottom">
                     <h4 class="text-uppercase mt-5 mb-3">Delivery Details</h4>
                 </div>
-                <div class="col-12 col-md-7 mt-2">
+                <div class="col-12 col-md-7 mt-2 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Full Name</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize mt-2">
@@ -60,7 +70,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Phone Number</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -68,7 +78,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">House No./House Name/Apartment</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -77,7 +87,7 @@
             </div>
             {% if order.street_address2 %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Street</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -86,7 +96,7 @@
             </div>
             {% endif %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Town/City</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -95,7 +105,7 @@
             </div>
             {% if order.county %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">County/State</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -104,7 +114,7 @@
             </div>
             {% endif %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Postcode/ZIP</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-uppercase">
@@ -112,7 +122,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 d-none d-sm-block">
                     <p class="text-uppercase semi-bold">Country</p>
                 </div>
                 <div class="col-12 col-md-5 text-md-right text-capitalize">
@@ -179,10 +189,10 @@
                 <div class="col-12 border-bottom">
                     <h4 class="text-uppercase mt-5 mb-3">Order Total</h4>
                 </div>
-                <div class="col-12 col-md-7 mt-2">
+                <div class="col-7 mt-2">
                     <p class="text-uppercase semi-bold">Sub-Total</p>
                 </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize mt-2">
+                <div class="col-5 text-md-right text-capitalize mt-2">
                     <p>£
                         {% if order.sub_total >= 50 %}
                         {{ order.sub_total }}
@@ -194,27 +204,27 @@
             </div>
             {% if order.order_total > 45 %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-7">
                     <p class="text-uppercase semi-bold">Discount</p>
                 </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
+                <div class="col-5 text-md-right text-capitalize">
                     <p class="text-success">-£5</p>
                 </div>
             </div>
             {% endif %}
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-7">
                     <p class="text-uppercase semi-bold">Delivery</p>
                 </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
+                <div class="col-5 text-md-right text-capitalize">
                     <p>£{{ order.delivery_cost }}</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-7">
                     <p class="text-uppercase font-weight-bold">Total</p>
                 </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
+                <div class="col-5 text-md-right text-capitalize">
                     <p>£{{ order.grand_total }}</p>
                 </div>
             </div>
