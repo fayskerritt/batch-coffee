@@ -5,6 +5,10 @@ from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+
+from accounts.models import UserAccount
+from accounts.forms import UserAccountForm
+
 from products.models import Product
 from bag.contexts import bag_contents
 
@@ -95,7 +99,25 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        # Prefill the form if user has saved information
+        if request.user.is_authenticated:
+            try:
+                account = UserAccount.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'email': account.user.email,
+                    'full_name': account.user.get_full_name(),
+                    'phone_number': account.default_phone_number,
+                    'street_address1': account.default_street_address1,
+                    'street_address2': account.default_street_address2,
+                    'town_or_city': account.default_town_or_city,
+                    'county': account.default_county,
+                    'postcode_zipcode': account.default_postcode_zipcode,
+                    'country': account.default_country,
+                })
+            except UserAccount.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     template = 'checkout/checkout.html'
     context = {
@@ -112,9 +134,27 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    # estimated_delivery_date = order.date + 2
 
-    # print(estimated_delivery_date)
+    if request.user.is_authenticated:
+        account = UserAccount.objects.get(user=request.user)
+        # Attach the order to user's profile
+        order.user_account = account
+        order.save()
+
+        # Save user info
+        if save_info:
+            account_data = {
+                'default_phone_number': order.phone_number,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+                'default_town_or_city': order.town_or_city,
+                'default_county': order.county,
+                'default_postcode_zipcode': order.postcode_zipcode,
+                'default_country': order.country,
+            }
+            user_account_form = UserAccountForm(account_data, instance=account)
+            if user_account_form.is_valid():
+                user_account_form.save()
 
     messages.success(request, f'Order Successful! \
         Your order number is {order_number}. A confirmation \

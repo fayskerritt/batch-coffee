@@ -31,7 +31,8 @@ class UserAccount(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_user_account(sender, instance, created, **kwargs):
     """Create/update the user's account"""
+
     if created:
         UserAccount.objects.create(user=instance)
-    # Existing users: just save the profile
+    # Just save the account for existing users
     instance.useraccount.save()

@@ -27,18 +27,40 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <p class="text-uppercase">Hi {{ account }}, welcome to your account</p>
+            <p class="text-uppercase">Hi {{ user.username }}, welcome to your account</p>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-8">
-            <div class="row pt-5">
+            <div class="row">
                 <div class="col-12 border-bottom">
-                    <h4 class="text-uppercase mt-1 mb-3">My Orders</h4>
+                    <h4 class="text-uppercase mt-5 mb-2 pb-1">My Details</h4>
                 </div>
+                <div class="col-12">
+                    <form action="{% url 'account' %}" method="POST" id="account-update-form" class="mt-4 mb-4">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="dark-button text-uppercase">Update My Details</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-uppercase mt-1 mb-3 border-bottom">My Orders</h4>
+                </div>
+            </div>
+
+
+
+            {% for order in orders %}
+            <div class="row pt-5 border-top">
                 <div class="col-4">
                     <p class="text-uppercase small semi-bold"><i class="fas fa-box"></i> Order Number</p>
-                    <p>{{ order.order_number }}</p>
+                    <p class="link">
+                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order.number }}">
+                            {{ order.order_number|truncatechars:6 }}
+                        </a>
+                    </p>
                 </div>
                 <div class="col-4">
                     <p class="text-uppercase small semi-bold"><i class="fas fa-calendar"></i> Order Date</p>
@@ -56,9 +78,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row border-bottom pb-3">
                 <div class="col-12 col-sm-10">
-                    {{ orders }}
                     {% for item in order.lineitems.all %}
                     <div class="col-12 col-md-6 col-lg-4 pt-3">
                         <div class="card product-card h-100 border-0">
@@ -117,85 +139,7 @@
                     <p>£{{ order.grand_total }}</p>
                 </div>
             </div>
-
-
-
-            <div class="row">
-                <div class="col-12 border-bottom">
-                    <h4 class="text-uppercase mt-5 mb-3">My Details</h4>
-                    <form action="{% url 'account' %}" method="POST" id="account-update-form" class="mt2">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button class="dark-button text-uppercase">Update My Details</button>
-                    </form>
-                </div>
-                <div class="col-12 col-md-7 mt-2 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Full Name</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize mt-2">
-                    <p>{{ order.full_name }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Phone Number</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.phone_number }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">House No./House Name/Apartment</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.street_address1 }}</p>
-                </div>
-            </div>
-            {% if order.street_address2 %}
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Street</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.street_address2 }}</p>
-                </div>
-            </div>
-            {% endif %}
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Town/City</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.town_or_city }}</p>
-                </div>
-            </div>
-            {% if order.county %}
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">County/State</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.county }}</p>
-                </div>
-            </div>
-            {% endif %}
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Postcode/ZIP</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-uppercase">
-                    <p>{{ order.postcode_zipcode }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-7 d-none d-sm-block">
-                    <p class="text-uppercase semi-bold">Country</p>
-                </div>
-                <div class="col-12 col-md-5 text-md-right text-capitalize">
-                    <p>{{ order.country }}</p>
-                </div>
-            </div>
+            {% endfor %}
 
 
         </div>
