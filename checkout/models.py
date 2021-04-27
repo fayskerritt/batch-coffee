@@ -3,7 +3,9 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from django_countries.fields import CountryField
 
 from products.models import Product
 
@@ -18,7 +20,7 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     county = models.CharField(max_length=80, null=True, blank=True)
     postcode_zipcode = models.CharField(max_length=20, null=True, blank=True)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     expected_delivery_date = models.DateField(null=True, blank=True)
     delivery_cost = models.DecimalField(
@@ -63,8 +65,6 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
         delivery_time = timedelta(days=2)
-        print(f'DATE {self.date}')
-        print(f'EXPECTED {self.expected_delivery_date}')
         self.expected_delivery_date = self.date + delivery_time
 
     def __str__(self):
