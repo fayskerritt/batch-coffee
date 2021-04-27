@@ -8,10 +8,14 @@ from datetime import timedelta
 from django_countries.fields import CountryField
 
 from products.models import Product
+from accounts.models import UserAccount
 
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
+    user_account = models.ForeignKey(UserAccount, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
@@ -23,9 +27,12 @@ class Order(models.Model):
     country = CountryField(blank_label='Country *', null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     expected_delivery_date = models.DateField(null=True, blank=True)
+    order_quantity = models.CharField(help_text="No. of items on order",
+                                      max_length=10, null=False, blank=False, default='')
     delivery_cost = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0)
     sub_total = models.DecimalField(
+        help_text="Total before discount IF order qualifies for disount",
         max_digits=10, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
@@ -66,6 +73,14 @@ class Order(models.Model):
 
         delivery_time = timedelta(days=2)
         self.expected_delivery_date = self.date + delivery_time
+
+    def order_quantity_total(self):
+        """Get total no. of items in order"""
+
+        self.order_quantity = self.lineitems.aggregate(
+            Sum('quantity'))['orderlineitem_quantity__sum'] or 0
+        print(f'ORDER QUANTITY {self.order_quantity}')
+        return self.order_quantity
 
     def __str__(self):
         return self.order_number
