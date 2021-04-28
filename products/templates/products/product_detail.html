@@ -45,7 +45,7 @@
                 alt="{{ product.name }}">
             {% endif %}
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 pb-5">
             <div class="product-detail">
                 <h2 class="font-weight-bold d-none d-sm-flex text-uppercase">{{ product.name }}</h2>
                 <h4 class="font-weight-bold mb-0">£{{ product.price }}</h4>
@@ -95,9 +95,11 @@
                             <span class="link pt-2">
                                 <a href="{% url 'add_save' product.id %}">
                                     {% if saved %}
-                                    <i class="fas fa-heart fa-2x pl-4 text-danger"></i>
+                                    <i class="fas fa-heart fa-2x pl-4 text-danger" data-toggle=" tooltip"
+                                        data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                     {% else %}
-                                    <i class="far fa-heart fa-2x pl-4"></i>
+                                    <i class="far fa-heart fa-2x pl-4" data-toggle="tooltip" data-placement="left"
+                                        title="CLICK TO ADD TO YOUR SAVED ITEMS"></i>
                                     {% endif %}
                                 </a>
                             </span>
@@ -111,6 +113,74 @@
             </div>
         </div>
     </div>
+
+    <div class="row comments-container">
+        <div class="col-12 border-bottom">
+            <h4 class="text-uppercase mt-5 mb-2 pb-1">Comments</h4>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="col-12">
+            <form action="{% url 'product_detail' product.id %}" method="POST" id="comment-form" class="mt-4 mb-4">
+                {% csrf_token %}
+                <p class="text-uppercase">Post a comment as: <strong>{{ user }}</strong></p>
+                {{ form|crispy }}
+                <button type="submit" id="comment-submit-button" class="dark-button text-uppercase">Comment</button>
+            </form>
+        </div>
+        {% endif %}
+
+
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="col-12 py-1">
+            <div class="card">
+                <div class="card-header py-0">
+                    <div class="row p-0 m-0">
+                        <div class="col-12 col-sm-6 my-auto text-left">
+                            <p class="text-uppercase my-1"><strong>{{ comment.user }}</strong></p>
+                        </div>
+                        <div class="col-12 col-sm-6 my-auto text-right">
+                            <p class="text-uppercase my-1">{{ comment.comment_date }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body py-1">
+                    <blockquote class="blockquote mb-0">
+                        <div class="row p-0 m-0">
+                            <div class="col-12 col-sm-1 m-0 p-0 text-center">
+                                <p class="small my-1">
+                                    <i class="far fa-comment fa-3x align-middle pr-4"></i>
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-11 m-0 p-0 my-auto">
+                                <p class="small py-2"> "{{ comment.comment }}"</p>
+                            </div>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
 </div>
+
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $('#comment-form').submit(() => {
+        this.reset();
+    });
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 {% endblock %}

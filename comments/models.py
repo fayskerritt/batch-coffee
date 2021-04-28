@@ -12,4 +12,5 @@ class Comment(models.Model):
     comment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.comment
+        return '{} commented on {} - {}'.format(
+            self.user, self.comment, self.comment_date)

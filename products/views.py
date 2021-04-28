@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category, Variety
+
+from comments.models import Comment
+from comments.forms import CommentForm
 from accounts.models import UserAccount
+
+from .models import Product, Category, Variety
 
 
 def all_products(request):
@@ -40,7 +45,6 @@ def all_products(request):
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
 
-    if request.GET:
         if 'category' in request.GET and 'variety' not in request.GET:
             category = request.GET['category']
             products = products.filter(category__name__icontains=category)
@@ -59,8 +63,8 @@ def all_products(request):
                 variety__name__contains=variety)
             category = Category.objects.get(name=category)
             variety = Variety.objects.filter(name=variety)
-        else:
-            messages.error(request, 'No matching products!')
+        # else:
+        #     messages.error(request, 'No matching products!')
 
     if request.GET:
         if 'q' in request.GET:
@@ -79,8 +83,12 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
     varieties = Variety.objects.all()
 
-    user = UserAccount.objects.get(user=request.user)
-    saved_list = Product.objects.filter(saved_items__user_account=user)
+    if request.user.is_authenticated:
+        user = UserAccount.objects.get(user=request.user)
+        saved_list = Product.objects.filter(saved_items__user_account=user)
+    else:
+        user = None
+        saved_list = None
 
     context = {
         'products': products,
@@ -108,9 +116,35 @@ def product_detail(request, product_id):
         if product in saved_list:
             saved = True
 
+    comments = Comment.objects.filter(product=product_id)
+
+    form = CommentForm()
+    if request.method == 'POST':
+        form_data = {
+            'comment': request.POST['comment'],
+        }
+
+        comment_form = CommentForm(form_data)
+
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.product = product
+            new_comment.user = UserAccount.objects.get(user=request.user)
+            new_comment.post = product
+            new_comment.save()
+            messages.success(request, 'Your comment has been posted')
+
+    if request.user.is_authenticated:
+        user = UserAccount.objects.get(user=request.user)
+    else:
+        user = "Anonymous"
+
     context = {
         'product': product,
         'saved': saved,
+        'comments': comments,
+        'user': user,
+        'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)

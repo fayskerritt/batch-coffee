@@ -27,8 +27,6 @@ class Order(models.Model):
     country = CountryField(blank_label='Country *', null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     expected_delivery_date = models.DateField(null=True, blank=True)
-    order_quantity = models.CharField(help_text="No. of items on order",
-                                      max_length=10, null=False, blank=False, default='')
     delivery_cost = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0)
     sub_total = models.DecimalField(

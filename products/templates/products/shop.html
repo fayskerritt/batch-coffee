@@ -63,7 +63,6 @@
             <p><small>{{ products|length }} Product{% if products|length != 1 %}s{% endif %}</small></p>
         </div>
         <!-- Sort dropdown -->
-
         <div class="col-12 col-md-6 my-auto d-flex justify-content-center justify-content-md-end">
             <div class="sort-select-wrapper w-50 ml-2">
                 <select id="sort-box" class="custom-select custom-select-sm rounded-0 border-black">
@@ -89,7 +88,7 @@
         </div>
     </div>
 </div>
-
+<!-- Products -->
 <div class="container">
     <div class="row">
         {% for product in products %}
@@ -137,14 +136,16 @@
                                 <p class="link">
                                     <a href="{% url 'add_save' product.id %}">
                                         {% if product in saved_list %}
-                                        <i class="fas fa-heart fa-lg text-danger"></i>
+                                        <i class="fas fa-heart fa-lg text-danger" data-toggle=" tooltip"
+                                            data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                         {% else %}
-                                        <i class="far fa-heart fa-lg"></i>
+                                        <i class=" far fa-heart fa-lg" data-toggle="tooltip" data-placement="left"
+                                            title="CLICK TO ADD TO YOUR SAVED ITEMS"></i>
                                         {% endif %}
                                     </a>
                                 </p>
                             </div>
-                            <div class="col-6 px-0 text-left">
+                            <div class=" col-6 px-0 text-left">
                                 <small>Variety - {{ product.variety.display_name }}</small>
                             </div>
                             <div class="col-6 px-0 text-right">

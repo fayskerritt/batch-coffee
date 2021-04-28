@@ -373,6 +373,16 @@ footer a:focus {
 }
 
 
+/* Comments */
+
+.comments-container textarea {
+    height: 50px;
+}
+
+.comments-container .card-header {
+    color: #074F3C;
+}
+
 /* Profile */
 
 .side-menu a {
