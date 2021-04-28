@@ -15,6 +15,7 @@
     </div>
 </div>
 
+<!-- Header -->
 <div class="container">
     <div class="text-center mt-3">
         <span>
@@ -24,6 +25,7 @@
     </div>
 </div>
 
+<!-- Main Account -->
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
@@ -32,6 +34,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-8">
+
             <div class="row">
                 <div class="col-12 border-bottom">
                     <h4 class="text-uppercase mt-5 mb-2 pb-1">My Details</h4>
@@ -44,18 +47,17 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Order History -->
             <div class="row">
                 <div class="col-12">
-                    <h4 class="text-uppercase mt-1 mb-3 border-bottom">My Orders</h4>
+                    <h4 class="text-uppercase mt-1 mb-3">My Orders</h4>
                 </div>
             </div>
-
-
-
             {% for order in orders %}
             <div class="row pt-5 border-top">
                 <div class="col-4">
-                    <p class="text-uppercase small semi-bold"><i class="fas fa-box"></i> Order Number</p>
+                    <p class="text-uppercase semi-bold"><i class="fas fa-box"></i> Order Number</p>
                     <p class="link">
                         <a href="{% url 'order_history' order.order_number %}" title="{{ order.order.number }}">
                             {{ order.order_number|truncatechars:6 }}
@@ -63,78 +65,54 @@
                     </p>
                 </div>
                 <div class="col-4">
-                    <p class="text-uppercase small semi-bold"><i class="fas fa-calendar"></i> Order Date</p>
+                    <p class="text-uppercase semi-bold"><i class="fas fa-calendar"></i> Order Date</p>
                     <p>{{ order.date }}</p>
                 </div>
                 <div class="col-4">
-                    <p class="text-uppercase small semi-bold"><i class="fas fa-truck"></i></i> Delivery Date
+                    <p class="text-uppercase semi-bold"><i class="fas fa-truck"></i> Delivery Date
                     </p>
                     <p>{{ order.expected_delivery_date }}</p>
                 </div>
                 <div class="col-12">
+                    {% if order.delivery_status == 3 %}YES
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100">DELIVERED</div>
                     </div>
+                    {% endif %}
+                    {% if order.delivery_status == 2 %}NO
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50"
+                            aria-valuemin="0" aria-valuemax="100">ON ITS WAY</div>
+                    </div>
+                    {% endif %}
+                    {% if order.delivery_status == 1 %}MAYBE
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10"
+                            aria-valuemin="0" aria-valuemax="100">ORDER PLACED</div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 
             <div class="row border-bottom pb-3">
-                <div class="col-12 col-sm-10">
+                <div class="col-12 col-sm-10 pr-0">
                     {% for item in order.lineitems.all %}
-                    <div class="col-12 col-md-6 col-lg-4 pt-3">
-                        <div class="card product-card h-100 border-0">
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                <div class="card-image">
-                                    {% if item.product.image %}
-                                    <img src="{{ item.product.image.url }}" class="card-img-top"
-                                        alt="{{ item.product.name }}">
-                                    {% else %}
-                                    <img src="{{ MEDIA_URL }}no-image.png" class="card-img-top"
-                                        alt="{{ item.product.name }}">
-                                    {% endif %}
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="row">
-                                        <div class="col-8 px-0">
-                                            <h6 class="card-title font-weight-bold text-uppercase mb-0">
-                                                {{ item.product.name }}
-                                            </h6>
-                                        </div>
-                                        <div class="col-4 text-right px-0">
-                                            <h6 class="font-weight-bold mb-0">£{{ item.product.price }}</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 px-0">
-                                            <h6 class="text-uppercase pt-2" id="category-link">
-                                                <a
-                                                    href="{% url 'products' %}?category={{ item.product.category.name }}">
-                                                    {{ item.product.category.display_name }}
-                                                </a>
-                                            </h6>
-                                        </div>
-                                        <div class="col-12 px-0 border-top border-bottom">
-                                            <small>Variety: {{ item.product.variety.display_name }}</small>
-                                        </div>
-                                        <div class="col-12 px-0">
-                                            {% if item.product.strength %}
-                                            <small>Strength: {{ item.product.strength }}</small>
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-12 px-0 border-top border-bottom">
-                                            {% if item.product.strength %}
-                                            <small class="semi-bold">Qty: {{ item.quantity }}</small>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    <ul class="list-unstyled">
+                        <li class="link">
+                            <p class="text-uppercase"><i class="fas fa-coffee pr-2"></i> X {{ item.quantity }} - <a
+                                    href="{% url 'product_detail' item.product.id %}">{{ item.product.name }}</a> |
+                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
+                                    {{ item.product.category.display_name }}</a> |
+                                {{ item.product.variety.display_name }} |
+                                {{ item.product.strength }}/10 -
+                                £{{ item.product.price }} each
+                            </p>
+                        </li>
+                    </ul>
                     {% endfor %}
                 </div>
-                <div class="col-12 col-sm-2">
+                <div class="col-12 col-sm-2 my-auto">
                     <p class="text-uppercase small semi-bold">Total</p>
                     <p>£{{ order.grand_total }}</p>
                 </div>

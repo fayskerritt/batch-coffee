@@ -5,6 +5,7 @@ from .models import UserAccount
 from .forms import UserAccountForm
 
 from checkout.models import Order
+from datetime import date
 
 
 def account(request):
@@ -21,11 +22,20 @@ def account(request):
     form = UserAccountForm(instance=account)
     orders = account.orders.all()
 
+    # delivery_status = 0
+    # if date.today > order.expected_delivery_date:
+    #     delivery_status = 3
+    # if date.today <= order.expected_delivery_date:
+    #     delivery_status = 2
+    # if date.today == order.date:
+    #     delivery_status = 1
+
     template = 'accounts/account.html'
     context = {
         'form': form,
         'orders': orders,
-        'on_account_page': True
+        'on_account_page': True,
+        # 'delivery_status': delivery_status,
     }
 
     return render(request, template, context)

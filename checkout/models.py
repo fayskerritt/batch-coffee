@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from datetime import timedelta
+from datetime import timedelta, date
 
 from django_countries.fields import CountryField
 
@@ -77,6 +77,17 @@ class Order(models.Model):
         total_items = self.lineitems.aggregate(Sum('quantity'))[
             'quantity__sum']
         return total_items
+
+    # def get_delivery_status(self):
+    #     """Is item past delivery date"""
+    #     delivery_status = 0
+    #     if date.today > self.expected_delivery_date:
+    #         delivery_status = 3
+    #     if date.today <= self.expected_delivery_date:
+    #         delivery_status = 2
+    #     elif date.today == self.date:
+    #         delivery_status = 1
+    #     return delivery_status
 
     def __str__(self):
         return self.order_number

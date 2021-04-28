@@ -55,14 +55,14 @@
                                     {{ item.product.category.display_name }}
                                 </a>
                             </p>
-                            <p class="small"><strong>Variety: </strong>{{ item.product.variety.display_name }}</p>
+                            <p><strong>Variety: </strong>{{ item.product.variety.display_name }}</p>
                             {% if item.product.strength %}
-                            <p class="small"><strong>Strength: </strong>{{ item.product.strength }}/10</p>
+                            <p><strong>Strength: </strong>{{ item.product.strength }}/10</p>
                             {% endif %}
 
                         </td>
                         <td class="align-middle">
-                            <p class="small text-center">{{ item.product.bag_size }}</p>
+                            <p class="text-center">{{ item.product.bag_size }}</p>
                         </td>
                         <td class="align-middle">
                             <form class="update-form" action="{% url 'update_bag' item.product_id %}" method="POST">
@@ -121,7 +121,8 @@
                         <td class="text-right">
                             <div class="delete-x text-right">
                                 <a href="{% url 'remove_from_bag' item.product_id %}">
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-times fa-2x" data-bs-toggle="tooltip" data-bs-placement="left"
+                                        title="REMOVE ITEM FROM BAG"></i>
                                 </a>
                             </div>
                         </td>
