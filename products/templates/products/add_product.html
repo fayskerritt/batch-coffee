@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="page-logo" src="{{ MEDIA_URL }}blacklogo.png" alt="Logo">
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="container">
+    <div class="text-center mt-3">
+        <span>
+            <h2>STORE ADMIN</h2>
+            <hr class="w-50 mb-3">
+            <h5 class="text-muted">Add a Product</h5>
+            <hr class="w-50 mb-3">
+        </span>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <form method="POST" action="{% url 'add_product' %}" class="form mb-3" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="text-right">
+                    <a class="dark-button" href="{% url 'products' %}">Cancel</a>
+                    <button class="light-button" type="submit">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
