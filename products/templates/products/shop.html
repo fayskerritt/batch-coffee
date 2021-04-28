@@ -126,12 +126,23 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 px-0">
+                            <div class="col-10 px-0">
                                 <h6 class="text-uppercase pt-2" id="category-link">
                                     <a href="{% url 'products' %}?category={{ product.category.name }}">
                                         {{ product.category.display_name }}
                                     </a>
                                 </h6>
+                            </div>
+                            <div class="col-2 px-0">
+                                <p class="link pt-2">
+                                    <a href="{% url 'add_save' product_id %}">
+                                    {% if item_saved %}
+                                        <i class="fas fa-heart text-danger"></i>
+                                    {% else %}
+                                        <i class="far fa-heart"></i>
+                                    {% endif %}
+                                    </a>
+                                </p>
                             </div>
                             <div class="col-6 px-0 text-left">
                                 <small>Variety - {{ product.variety.display_name }}</small>

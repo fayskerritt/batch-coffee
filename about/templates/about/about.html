@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container px-0">
+    <div class="row px-0">
+        <div class="col-12 col-md-6 text-center">
+            <img class="home-logo" src="{{ MEDIA_URL }}blacklogo.png" alt="Logo">
+        </div>
+        <div class="col-12 col-md-6 my-auto text-center pt-4 pb-4">
+            <h2>ABOUT</h2>
+            <hr class="w-100 mb-3">
+            <p>
+                We are passionate about bringing you the best quality coffee, every time. We source coffee from 4
+                continents and over 20 countries, because we know where the coffee is grown greatly affects the taste.
+            </p>
+            <p>
+                We travel to meet our producers, and aim to work with the same farms year after year to create long
+                standing and mutually beneficial relationships.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="shop-banner text-center">
+        <span>
+            Check out our amazing range of Coffee
+            <a href="{% url 'products' %}">
+                <button class="light-button mx-4">BROWSE COFFEE</button>
+            </a>
+        </span>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center my-auto py-5">
+            <h3 class="text-uppercase pt-4">DELIVERY</h3>
+            <hr class="w-50 mb-3">
+            <p>
+                Our delivery costs £3 per shipment, this is because we only use express delivery couriers to ensure our
+                coffee
+                reaches you in the fastest time possible to ensure its freshness.
+            </p>
+        </div>
+        <div class="col-12 text-center my-auto">
+            <h3 class="text-uppercase pt-4">SUSTAINABILITY</h3>
+            <hr class="w-50 mb-3">
+            <p>
+                Our packaging is made from 100% recyclable materials. When empty, give the packaging a rinse and pop it
+                in your recycling bin.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -425,7 +425,8 @@ footer a:focus {
         height: 100px;
     }
 
-    .page-logo {
+    .page-logo,
+    .home-logo {
         margin-top: 100px;
     }
 
