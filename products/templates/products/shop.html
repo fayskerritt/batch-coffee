@@ -133,14 +133,14 @@
                                     </a>
                                 </h6>
                             </div>
-                            <div class="col-2 px-0">
-                                <p class="link pt-2">
-                                    <a href="{% url 'add_save' product_id %}">
-                                    {% if item_saved %}
-                                        <i class="fas fa-heart text-danger"></i>
-                                    {% else %}
-                                        <i class="far fa-heart"></i>
-                                    {% endif %}
+                            <div class="col-2 px-0 text-right">
+                                <p class="link">
+                                    <a href="{% url 'add_save' product.id %}">
+                                        {% if product in saved_list %}
+                                        <i class="fas fa-heart fa-lg text-danger"></i>
+                                        {% else %}
+                                        <i class="far fa-heart fa-lg"></i>
+                                        {% endif %}
                                     </a>
                                 </p>
                             </div>

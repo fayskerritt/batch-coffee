@@ -92,15 +92,15 @@
 
                         <div class="col-12">
                             <input type="submit" class="light-button rounded-0 text-uppercase mt-1" value="Add to Bag">
-                            <p class="link pt-2">
-                                <a href="{% url 'add_save' product_id %}">
-                                {% if item_saved %}
-                                    <i class="fas fa-heart text-danger"></i>
-                                {% else %}
-                                    <i class="far fa-heart"></i>
-                                {% endif %}
+                            <span class="link pt-2">
+                                <a href="{% url 'add_save' product.id %}">
+                                    {% if saved %}
+                                    <i class="fas fa-heart fa-2x pl-4 text-danger"></i>
+                                    {% else %}
+                                    <i class="far fa-heart fa-2x pl-4"></i>
+                                    {% endif %}
                                 </a>
-                            </p>
+                            </span>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>

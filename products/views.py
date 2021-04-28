@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Category, Variety
+from accounts.models import UserAccount
 
 
 def all_products(request):
@@ -78,6 +79,9 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
     varieties = Variety.objects.all()
 
+    user = UserAccount.objects.get(user=request.user)
+    saved_list = Product.objects.filter(saved_items__user_account=user)
+
     context = {
         'products': products,
         'search_term': query,
@@ -85,6 +89,7 @@ def all_products(request):
         'current_variety': variety,
         'varieties': varieties,
         'current_sorting': current_sorting,
+        'saved_list': saved_list,
     }
 
     return render(request, 'products/shop.html', context)
@@ -96,9 +101,16 @@ def product_detail(request, product_id):
     """
 
     product = get_object_or_404(Product, pk=product_id)
+    saved = False
+    if request.user.is_authenticated:
+        user = UserAccount.objects.get(user=request.user)
+        saved_list = Product.objects.filter(saved_items__user_account=user)
+        if product in saved_list:
+            saved = True
 
     context = {
         'product': product,
+        'saved': saved,
     }
 
     return render(request, 'products/product_detail.html', context)

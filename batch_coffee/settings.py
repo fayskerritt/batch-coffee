@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'accounts',
     'saveditems',
     'about',
+    'comments',
 
     # Other
     'crispy_forms',

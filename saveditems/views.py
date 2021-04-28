@@ -9,7 +9,7 @@ def saved_items(request):
     """A view to display saved items"""
 
     user = UserAccount.objects.get(user=request.user)
-    print(f"USER {user}")
+    print(f"USER1 {user}")
     saved_list = Product.objects.filter(saved_items__user_account=user)
     print(f'SAVED LIST {saved_list}')
     context = {
@@ -23,9 +23,14 @@ def add_save(request, product_id):
     """Add and remove items from saved list"""
 
     item = get_object_or_404(Product, pk=product_id)
+    print(f'ITEM {item}')
     user = UserAccount.objects.get(user=request.user)
+    print(f'USER2 {user}')
     user_list, created = SavedList.objects.get_or_create(user_account=user)
+    print(f'USER LIST {user_list}')
+    print(f'CREATED {user_list, created}')
     saved_items = Product.objects.filter(saved_items__user_account=user)
+    print(f'SAVED ITEMS {saved_items}')
 
     if created:
         item.saved_items.add(user_list.id)
