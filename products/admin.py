@@ -18,17 +18,9 @@ class VarietyAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'category',
-        'variety',
-        'sku',
-        'name',
-        'description',
-        'bag_size',
-        'region',
-        'altitude',
-        'strength',
-        'price',
-        'image',
+        'category', 'variety', 'sku', 'name',
+        'description', 'bag_size', 'region',
+        'altitude', 'strength', 'price', 'image',
         'image_url',
     )
 
