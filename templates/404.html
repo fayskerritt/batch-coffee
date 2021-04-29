@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container px-0">
+    <div class="row px-0">
+        <div class="col-12 col-md-6 text-center">
+            <img class="home-logo" src="{{ MEDIA_URL }}blacklogo.png" alt="Logo">
+        </div>
+        <div class="col-12 col-md-6 my-auto text-center pt-4 pb-4">
+            <h2>Oops! Nothing to see here...</h2>
+            <hr class="w-100 mb-3">
+            <p>
+                The page you were trying to get to has not been found.
+            </p>
+            <p>
+                Sorry for the inconvenience!
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="shop-banner text-center">
+        <span>
+            Why not go back and check out our amazing range of Coffee
+            <a href="{% url 'products' %}">
+                <button class="light-button mx-4">BROWSE COFFEE</button>
+            </a>
+        </span>
+    </div>
+</div>
+
+{% endblock %}
