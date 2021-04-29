@@ -40,7 +40,7 @@
                     <h4 class="text-uppercase mt-5 mb-2 pb-1">My Details</h4>
                 </div>
                 <div class="col-12">
-                    <form action="{% url 'account' %}" method="POST" id="account-update-form" class="mt-4 mb-4">
+                    <form action="{% url 'account_details' %}" method="POST" id="account-update-form" class="mt-4 mb-4">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <button class="dark-button text-uppercase">Update My Details</button>
