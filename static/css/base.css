@@ -285,15 +285,20 @@ footer a:focus {
     padding-bottom: 15px;
 }
 
-#category-link a,
-#category-link a {
+.category-link a,
+.category-link a {
     color: #000;
     transition: all .1s ease-out;
 }
 
-#category-link a:hover,
-#category-link a:focus {
+.category-link a:hover,
+.category-link a:focus {
     color: #000;
+    text-decoration: underline;
+}
+
+.store-admin-links a:hover,
+.store-admin-links a:focus {
     text-decoration: underline;
 }
 

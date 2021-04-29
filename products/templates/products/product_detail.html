@@ -104,6 +104,15 @@
                                 </a>
                             </span>
                         </div>
+                        {% if request.user.is_superuser %}
+                        <div class="col-12">
+                            <p class="small store-admin-links">
+                                <a href="{% url 'edit_product' product.id %}" class="text-uppercase">Edit</a> |
+                                <a href="{% url 'delete_product' product.id %}"
+                                    class="text-uppercase text-danger">Delete</a>
+                            </p>
+                        </div>
+                        {% endif %}
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>

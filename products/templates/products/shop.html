@@ -153,6 +153,15 @@
                                 <small>Strength - {{ product.strength }}</small>
                                 {% endif %}
                             </div>
+                            {% if request.user.is_superuser %}
+                            <div class="col-12 px-0">
+                                <p class="small store-admin-links">
+                                    <a href="{% url 'edit_product' product.id %}" class="text-uppercase">Edit</a> |
+                                    <a href="{% url 'delete_product' product.id %}"
+                                        class="text-uppercase text-danger">Delete</a>
+                                </p>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </a>
