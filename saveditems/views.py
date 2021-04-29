@@ -30,15 +30,15 @@ def add_save(request, product_id):
 
     if created:
         item.saved_items.add(user_list.id)
-        messages.success(request, f'{item.name} was added to your saved items')
+        messages.info(request, f'{item.name} was added to your saved items')
     else:
         if item in saved_items:
             item.saved_items.remove(user_list.id)
-            messages.success(
+            messages.info(
                 request, f'{item.name} was removed from your saved items')
         else:
             item.saved_items.add(user_list.id)
-            messages.success(
+            messages.info(
                 request, f'{item.name} was added to your saved items')
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

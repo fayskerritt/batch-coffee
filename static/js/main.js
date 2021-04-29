@@ -14,19 +14,5 @@ $(function () {
         } else {
             $('#mobile-search-bar').addClass('d-none');
         }
-    })
-})
-$(function () {
-    $('.update-qty').change(function () {
-        $(this).closest('.quantity-update').find('.update-button').removeClass('d-none');
-        $(this).closest('.quantity-update').find('.update-button').addClass('d-block');
-    })
-})
-
-$(function () {
-    $('.cancel-button').click(function () {
-        $(this).closest(".quantity-update").find('.update-button').removeClass('d-block');
-        $(this).closest(".quantity-update").find('.update-button').addClass('d-none');
-        window.location.reload();
-    })
-})
+    });
+});

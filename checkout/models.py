@@ -85,7 +85,7 @@ class Order(models.Model):
             delivery_status = 3
         if date.today() <= self.expected_delivery_date:
             delivery_status = 2
-        elif date.today() == self.date:
+        elif date.today() < self.date:
             delivery_status = 1
         return delivery_status
 

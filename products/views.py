@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.core.paginator import Paginator
 
 from .models import Product, Category, Variety
 from .forms import ProductForm
@@ -132,7 +133,7 @@ def product_detail(request, product_id):
             new_comment.user = UserAccount.objects.get(user=request.user)
             new_comment.post = product
             new_comment.save()
-            messages.success(request, 'Your comment has been posted')
+            messages.info(request, 'Your comment has been posted')
 
     if request.user.is_authenticated:
         user = UserAccount.objects.get(user=request.user)
@@ -230,6 +231,6 @@ def delete_comment(request, comment_id):
     if request.user.is_authenticated:
         comment = get_object_or_404(Comment, pk=comment_id)
         comment.delete()
-        messages.success(request, 'Comment deleted!')
+        messages.info(request, 'Comment deleted!')
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
