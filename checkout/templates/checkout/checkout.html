@@ -73,7 +73,8 @@
                 <h4 class="text-uppercase mt-5 mb-2">Email Address</h4>
                 {% if not user.is_authenticated %}
                 <div class="text-muted form-subtitle">
-                    <small>Have a Batch Coffee account? <a href="#">Log in</a> or <a href="#">Sign up</a></small>
+                    <small class="text-uppercase">Have a Batch Coffee account? <a href="{% url 'account_login' %}">Log
+                            in</a> or <a href="{% url 'account_signup' %}">Sign up</a></small>
                 </div>
                 {% endif %}
                 {{ order_form.email | as_crispy_field }}
@@ -90,7 +91,7 @@
                 <label class="form-check-label" for="save-info">Save this delivery address to my profile</label>
                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="save-info" name="save-info" checked>
                 {% else %}
-                <label class="form-check-label" for="save-info">
+                <label class="form-check-label text-uppercase" for="save-info">
                     <a class="text-info" href="{% url 'account_login' %}">Login</a> or
                     <a class="text-info" href="{% url 'account_signup' %}">Sign up</a> to save this information
                 </label>
@@ -101,7 +102,7 @@
                 <!-- Card error messages -->
                 <div id="card-errors" class="mb-3 text-danger"></div>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                <p class="font-weight-normal">Total to pay -
+                <p class="font-weight-normal text-uppercase">Total to pay -
                     £{{ grand_total|floatformat:2 }}</strong>
                 </p>
 

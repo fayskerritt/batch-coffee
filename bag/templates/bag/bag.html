@@ -40,7 +40,7 @@
                 <tbody>
                     {% for item in bag_items %}
                     <tr class="border p-2 m-3">
-                        <td class="w-25 align-middle">
+                        <td class="w-25 align-middle shopping-bag-img">
                             {% if item.product.image %}
                             <img src="{{ item.product.image.url }}" class="bag-image img-fluid"
                                 alt="{{ product.name }}">
@@ -49,8 +49,8 @@
                             {% endif %}
                         </td>
                         <td class="align-middle">
-                            <h4 class="font-weight-bold text-uppercase">{{ item.product.name }}</h4>
-                            <p class="text-uppercase pt-2" id="category-link">
+                            <h4 class="font-weight-bold text-uppercase product-name">{{ item.product.name }}</h4>
+                            <p class="text-uppercase pt-2 category-link">
                                 <a href="{% url 'products' %}?category={{ item.product.category.name }}">
                                     {{ item.product.category.display_name }}
                                 </a>
@@ -64,13 +64,13 @@
                         <td class="align-middle">
                             <p class="text-center">{{ item.product.bag_size }}</p>
                         </td>
-                        <td class="align-middle">
+                        <td class="align-middle text-center">
                             <form class="update-form" action="{% url 'update_bag' item.product_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="quantity-update">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <select class="form-control custom-select rounded-0 update-qty"
+                                            <select class="form-control custom-select rounded-0 update-qty mx-auto"
                                                 name="quantity" value="{{ item.quantity }}"
                                                 data-product_id="{{ item.product.id }}"
                                                 id="id_qty_{{ item.product.id }}">
@@ -97,6 +97,9 @@
                                             </select>
                                         </div>
                                     </div>
+                                    {% if item.quantity > 10 %}
+                                    <p class="text-danger text-uppercase">Maximum<br>10 units<br>of each<br>product!</p>
+                                    {% endif %}
                                     <div class="update-button text-center d-none mx-auto">
                                         <ul class="list-unstyled">
                                             <li>

@@ -245,18 +245,18 @@
         <div class="col-12 col-md-4 order-md-first">
             <div class="row pt-5">
                 <div class="side-menu col-12 border-bottom">
-                    <a href="#">
+                    <a href="{% url 'account' %}">
                         <p class="text-uppercase"><i class="fas fa-user pr-3"></i> My Account</p>
                     </a>
                 </div>
                 <div class="side-menu col-12 border-bottom">
-                    <a href="{% url 'home' %}">
-                        <p class="text-uppercase"><i class="fas fa-home pr-3"></i> Home</p>
+                    <a href="{% url 'account_details' %}">
+                        <p class="text-uppercase"><i class="fas fa-align-left pr-3"></i> My Details</p>
                     </a>
                 </div>
                 <div class="side-menu col-12 border-bottom">
-                    <a href="{% url 'products' %}">
-                        <p class="text-uppercase"><i class="fas fa-coffee pr-3"></i> Shop More Coffee</p>
+                    <a href="{% url 'account_orders' %}">
+                        <p class="text-uppercase"><i class="fas fa-box pr-3"></i> My Order History</p>
                     </a>
                 </div>
                 <div class="side-menu col-12 border-bottom">
@@ -264,9 +264,9 @@
                         <p class="text-uppercase"><i class="fas fa-heart pr-3"></i> Saved Items</p>
                     </a>
                 </div>
-                <div class="side-menu col-12 border-bottom">
-                    <a href="#">
-                        <p class="text-uppercase"><i class="fas fa-question-circle pr-3"></i> Need Help?</p>
+                <div class="side-menu col-12 pt-3">
+                    <a href="{% url 'products' %}">
+                        <p class="text-uppercase"><i class="fas fa-coffee pr-3"></i> Back to Shop</p>
                     </a>
                 </div>
             </div>

@@ -44,64 +44,60 @@
             {% if orders %}
             {% for order in orders %}
             <div class="row pt-5 border-top">
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <p class="text-uppercase semi-bold"><i class="fas fa-box"></i> Order Number</p>
                     <p class="link">
                         <a href="{% url 'order_history' order.order_number %}" title="{{ order.order.number }}">
-                            {{ order.order_number|truncatechars:6 }}
+                            {{ order.order_number|truncatechars:8 }}
                         </a>
                     </p>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4 text-center">
                     <p class="text-uppercase semi-bold"><i class="fas fa-calendar"></i> Order Date</p>
                     <p>{{ order.date }}</p>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4 text-right">
                     <p class="text-uppercase semi-bold"><i class="fas fa-truck"></i> Delivery Date
                     </p>
                     <p>{{ order.expected_delivery_date }}</p>
                 </div>
                 <div class="col-12">
-                    {{ order.get_delivery_status }}
-                    {% if order.get_delivery_status == 3 %}YES
+                    {% if order.get_delivery_status == 3 %}
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100">DELIVERED</div>
+                        <div class="progress-bar bg-success text-right" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <p class="small pr-2 pt-1">DELIVERED</p>
+                        </div>
                     </div>
                     {% endif %}
-                    {% if order.get_delivery_status == 2 %}NO
+                    {% if order.get_delivery_status == 2 %}
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50"
-                            aria-valuemin="0" aria-valuemax="100">ON ITS WAY</div>
+                        <div class="progress-bar bg-success text-right" role="progressbar" style="width: 50%"
+                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            <p class="small pr-2 pt-1">ON ITS WAY</p>
+                        </div>
                     </div>
                     {% endif %}
-                    {% if order.get_delivery_status == 1 %}MAYBE
+                    {% if order.get_delivery_status == 1 %}
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10"
-                            aria-valuemin="0" aria-valuemax="100">ORDER PLACED</div>
+                        <div class="progress-bar bg-success text-left" role="progressbar" style="width: 10%"
+                            aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                            <p class="small pl-2 pt-1">ORDER PLACED</p>
+                        </div>
                     </div>
                     {% endif %}
                 </div>
             </div>
 
             <div class="row border-bottom pb-3">
-                <div class="col-12 col-sm-10 pr-0">
-                    {% for item in order.lineitems.all %}
-                    <ul class="list-unstyled">
-                        <li class="link">
-                            <p class="text-uppercase"><i class="fas fa-coffee pr-2"></i> X {{ item.quantity }} - <a
-                                    href="{% url 'product_detail' item.product.id %}">{{ item.product.name }}</a> |
-                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
-                                    {{ item.product.category.display_name }}</a> |
-                                {{ item.product.variety.display_name }} |
-                                {{ item.product.strength }}/10 -
-                                £{{ item.product.price }} each
-                            </p>
-                        </li>
-                    </ul>
-                    {% endfor %}
+                <div class="col-12 col-sm-10 my-auto">
+                    {% if order.get_total_items != 1 %}
+                    <p class="text-uppercase pl-1">{{ order.get_total_items }} Items</p>
+                    {% else %}
+                    <p class="text-uppercase pl-1">{{ order.get_total_items }} Item</p>
+                    {% endif %}
                 </div>
-                <div class="col-12 col-sm-2 my-auto">
+                <div class=" col-12 col-sm-2 my-auto">
                     <p class="text-uppercase small semi-bold">Total</p>
                     <p>£{{ order.grand_total }}</p>
                 </div>
@@ -131,23 +127,13 @@
                     </a>
                 </div>
                 <div class="side-menu col-12 border-bottom">
-                    <a href="{% url 'home' %}">
-                        <p class="text-uppercase"><i class="fas fa-home pr-3"></i> Home</p>
-                    </a>
-                </div>
-                <div class="side-menu col-12 border-bottom">
-                    <a href="{% url 'products' %}">
-                        <p class="text-uppercase"><i class="fas fa-coffee pr-3"></i> Shop More Coffee</p>
-                    </a>
-                </div>
-                <div class="side-menu col-12 border-bottom">
                     <a href="{% url 'saved_items' %}">
                         <p class="text-uppercase"><i class="fas fa-heart pr-3"></i> Saved Items</p>
                     </a>
                 </div>
-                <div class="side-menu col-12 border-bottom">
-                    <a href="#">
-                        <p class="text-uppercase"><i class="fas fa-question-circle pr-3"></i> Need Help?</p>
+                <div class="side-menu col-12 pt-3">
+                    <a href="{% url 'products' %}">
+                        <p class="text-uppercase"><i class="fas fa-coffee pr-3"></i> Back to Shop</p>
                     </a>
                 </div>
             </div>

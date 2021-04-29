@@ -6,16 +6,16 @@
             </span>
         </li>
         <li class="nav-item dropdown list-inline-item">
-            <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown"
+            <span class="nav-link dropdown-toggle" id="user-dropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i>
-            </a>
+            </span>
             <div class="dropdown-menu dropdown-menu-right" id="user-mobile" aria-labelledby="user-dropdown">
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'add_product' %}">STORE ADMIN</a>
-                {% endif %}
                 <div class="dropdown-divider"></div>
+                {% endif %}
                 <a class="dropdown-item" href="{% url 'account' %}">MY ACCOUNT</a>
                 <a class="dropdown-item" href="{% url 'account_logout' %}">LOGOUT</a>
                 {% else %}

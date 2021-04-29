@@ -24,7 +24,9 @@
     <div class="row">
         <div class="col-12 col-md-6 text-center my-auto py-5">
             <p class="h4">Why choose Batch Coffee?</p><br>
-            <button class="dark-button">ABOUT US</button>
+            <a href="{% url 'about' %}">
+                <button class="dark-button">ABOUT US</button>
+            </a>
         </div>
         <div class="col-12 col-md-6 text-center my-auto">
             <img class="home-img img-fluid" src="{{ MEDIA_URL }}coffeebags.jpg" alt="Coffee Bags">

@@ -361,9 +361,9 @@ footer a:focus {
     border: 1px solid #ced4da;
 }
 
-.input-group .qty-input {
-    min-width: 30px;
-    max-width: 50px;
+.input-group .custom-select {
+    min-width: 50px;
+    max-width: 80px;
 }
 
 .delete-x a {
@@ -475,6 +475,14 @@ footer a:focus {
     .page-logo,
     .home-logo {
         margin-top: 100px;
+    }
+
+    .product-name {
+        font-size: 16px;
+    }
+
+    .shopping-bag-img {
+        display: none;
     }
 
 }

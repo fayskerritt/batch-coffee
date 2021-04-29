@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.db.models.functions import Lower
 
@@ -64,8 +65,6 @@ def all_products(request):
                 variety__name__contains=variety)
             category = Category.objects.get(name=category)
             variety = Variety.objects.filter(name=variety)
-        # else:
-        #     messages.error(request, 'No matching products!')
 
     if request.GET:
         if 'q' in request.GET:
@@ -233,4 +232,4 @@ def delete_comment(request, comment_id):
         comment.delete()
         messages.success(request, 'Comment deleted!')
 
-    return redirect(reverse('products'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
