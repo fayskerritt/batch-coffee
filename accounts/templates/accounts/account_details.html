@@ -29,18 +29,23 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <p class="text-uppercase">{{ user.username }} - my account</p>
+            <p class="text-uppercase">{{ user.username }} - account details</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-8 pt-5 mt-2 pl-3 pr-3 account-welcome">
-            <div class="welcome-message">
-                <h2 class="text-uppercase semi-bold pl-3">
-                    welcome to
-                </h2>
-                <h2 class="text-uppercase semi-bold pt-3 pl-3 pr-3 mb-0">
-                    your account
-                </h2>
+        <div class="col-12 col-md-8">
+
+            <div class="row">
+                <div class="col-12 border-bottom">
+                    <h4 class="text-uppercase mt-5 mb-2 pb-1">My Details</h4>
+                </div>
+                <div class="col-12">
+                    <form action="{% url 'account' %}" method="POST" id="account-update-form" class="mt-4 mb-4">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="dark-button text-uppercase">Update My Details</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-4 order-md-first">

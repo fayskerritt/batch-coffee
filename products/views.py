@@ -222,3 +222,15 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """ Delete a comment from a product """
+
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment.delete()
+        messages.success(request, 'Comment deleted!')
+
+    return redirect(reverse('products'))

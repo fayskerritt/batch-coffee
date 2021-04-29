@@ -78,16 +78,16 @@ class Order(models.Model):
             'quantity__sum']
         return total_items
 
-    # def get_delivery_status(self):
-    #     """Is item past delivery date"""
-    #     delivery_status = 0
-    #     if date.today > self.expected_delivery_date:
-    #         delivery_status = 3
-    #     if date.today <= self.expected_delivery_date:
-    #         delivery_status = 2
-    #     elif date.today == self.date:
-    #         delivery_status = 1
-    #     return delivery_status
+    def get_delivery_status(self):
+        """Is item past delivery date"""
+        delivery_status = 0
+        if date.today() > self.expected_delivery_date:
+            delivery_status = 3
+        if date.today() <= self.expected_delivery_date:
+            delivery_status = 2
+        elif date.today() == self.date:
+            delivery_status = 1
+        return delivery_status
 
     def __str__(self):
         return self.order_number

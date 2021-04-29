@@ -243,6 +243,10 @@ span.nav-link:focus {
     font-size: 11px;
 }
 
+.dropdown-item {
+    font-size: 12px;
+}
+
 /* Footer */
 
 footer {

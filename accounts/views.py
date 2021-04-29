@@ -15,29 +15,14 @@ def account(request):
 
     account = get_object_or_404(UserAccount, user=request.user)
 
-    if request.method == 'POST':
-        form = UserAccountForm(request.POST, instance=account)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your details were updated successfully')
-
     form = UserAccountForm(instance=account)
     orders = account.orders.all()
-
-    # delivery_status = 0
-    # if date.today > order.expected_delivery_date:
-    #     delivery_status = 3
-    # if date.today <= order.expected_delivery_date:
-    #     delivery_status = 2
-    # if date.today == order.date:
-    #     delivery_status = 1
 
     template = 'accounts/account.html'
     context = {
         'form': form,
         'orders': orders,
         'on_account_page': True,
-        # 'delivery_status': delivery_status,
     }
 
     return render(request, template, context)
@@ -55,6 +40,45 @@ def order_history(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def account_details(request):
+    """Return account details page"""
+
+    account = get_object_or_404(UserAccount, user=request.user)
+
+    if request.method == 'POST':
+        form = UserAccountForm(request.POST, instance=account)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your details were updated successfully')
+
+    form = UserAccountForm(instance=account)
+
+    template = 'accounts/account_details.html'
+    context = {
+        'form': form,
+        'on_account_page': True,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def account_orders(request):
+    """Return account details page"""
+
+    account = get_object_or_404(UserAccount, user=request.user)
+    orders = account.orders.all()
+
+    template = 'accounts/account_orders.html'
+    context = {
+        'orders': orders,
         'from_profile': True,
     }
 

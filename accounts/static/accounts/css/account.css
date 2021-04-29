@@ -1,0 +1,9 @@
+.account-welcome {
+    color: #074F3C;
+    border: 1px solid #dee2e6;
+}
+
+.welcome-message {
+    width: fit-content;
+    padding: 20px;
+}

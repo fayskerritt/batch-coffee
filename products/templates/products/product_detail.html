@@ -49,8 +49,8 @@
             <div class="product-detail">
                 <h2 class="font-weight-bold d-none d-sm-flex text-uppercase">{{ product.name }}</h2>
                 <h4 class="font-weight-bold mb-0">£{{ product.price }}</h4>
-                <h6 class="text-uppercase pt-2" id="category-link">
-                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                <h6 class="text-uppercase pt-2 category-link">
+                    <a href=" {% url 'products' %}?category={{ product.category.name }}">
                         {{ product.category.display_name }}
                     </a>
                 </h6>
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="submit" class="light-button rounded-0 text-uppercase mt-1" value="Add to Bag">
+                            <input type="submit" class="dark-button rounded-0 text-uppercase mt-1" value="Add to Bag">
                             <span class="link pt-2">
                                 <a href="{% url 'add_save' product.id %}">
                                     {% if saved %}
@@ -117,7 +117,7 @@
                     </div>
                 </form>
                 <a href="{% url 'products' %}">
-                    <button class="dark-button text-uppercase">Keep Shopping</button>
+                    <button class="light-button text-uppercase">Keep Shopping</button>
                 </a>
             </div>
         </div>
@@ -166,10 +166,17 @@
                             </div>
                         </div>
                     </blockquote>
+                    <p class="text-uppercase link text-right">
+                        <a href="{% url 'delete_comment' comment.id %}" class="light-button">
+                            Delete Comment
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p class="text-uppercase pt-3 pl-3">No comments yet</p>
         {% endif %}
     </div>
 </div>

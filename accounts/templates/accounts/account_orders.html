@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="page-logo" src="{{ MEDIA_URL }}blacklogo.png" alt="Logo">
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="container">
+    <div class="text-center mt-3">
+        <span>
+            <h2>MY ACCOUNT</h2>
+            <hr class="w-50 mb-3">
+        </span>
+    </div>
+</div>
+
+<!-- Main Account -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <p class="text-uppercase">{{ user.username }} - order history</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8">
+
+            <!-- Order History -->
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="text-uppercase mt-5 mb-2 pb-1">My Orders</h4>
+                </div>
+            </div>
+            {% if orders %}
+            {% for order in orders %}
+            <div class="row pt-5 border-top">
+                <div class="col-4">
+                    <p class="text-uppercase semi-bold"><i class="fas fa-box"></i> Order Number</p>
+                    <p class="link">
+                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order.number }}">
+                            {{ order.order_number|truncatechars:6 }}
+                        </a>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <p class="text-uppercase semi-bold"><i class="fas fa-calendar"></i> Order Date</p>
+                    <p>{{ order.date }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="text-uppercase semi-bold"><i class="fas fa-truck"></i> Delivery Date
+                    </p>
+                    <p>{{ order.expected_delivery_date }}</p>
+                </div>
+                <div class="col-12">
+                    {{ order.get_delivery_status }}
+                    {% if order.get_delivery_status == 3 %}YES
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100">DELIVERED</div>
+                    </div>
+                    {% endif %}
+                    {% if order.get_delivery_status == 2 %}NO
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50"
+                            aria-valuemin="0" aria-valuemax="100">ON ITS WAY</div>
+                    </div>
+                    {% endif %}
+                    {% if order.get_delivery_status == 1 %}MAYBE
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10"
+                            aria-valuemin="0" aria-valuemax="100">ORDER PLACED</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row border-bottom pb-3">
+                <div class="col-12 col-sm-10 pr-0">
+                    {% for item in order.lineitems.all %}
+                    <ul class="list-unstyled">
+                        <li class="link">
+                            <p class="text-uppercase"><i class="fas fa-coffee pr-2"></i> X {{ item.quantity }} - <a
+                                    href="{% url 'product_detail' item.product.id %}">{{ item.product.name }}</a> |
+                                <a href="{% url 'products' %}?category={{ item.product.category.name }}">
+                                    {{ item.product.category.display_name }}</a> |
+                                {{ item.product.variety.display_name }} |
+                                {{ item.product.strength }}/10 -
+                                £{{ item.product.price }} each
+                            </p>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                </div>
+                <div class="col-12 col-sm-2 my-auto">
+                    <p class="text-uppercase small semi-bold">Total</p>
+                    <p>£{{ order.grand_total }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-uppercase pl-3 pt-3">No Orders Yet</p>
+            {% endif %}
+
+
+        </div>
+        <div class="col-12 col-md-4 order-md-first">
+            <div class="row pt-5">
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'account' %}">
+                        <p class="text-uppercase"><i class="fas fa-user pr-3"></i> My Account</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'account_details' %}">
+                        <p class="text-uppercase"><i class="fas fa-align-left pr-3"></i> My Details</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'account_orders' %}">
+                        <p class="text-uppercase"><i class="fas fa-box pr-3"></i> My Order History</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'home' %}">
+                        <p class="text-uppercase"><i class="fas fa-home pr-3"></i> Home</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'products' %}">
+                        <p class="text-uppercase"><i class="fas fa-coffee pr-3"></i> Shop More Coffee</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="{% url 'saved_items' %}">
+                        <p class="text-uppercase"><i class="fas fa-heart pr-3"></i> Saved Items</p>
+                    </a>
+                </div>
+                <div class="side-menu col-12 border-bottom">
+                    <a href="#">
+                        <p class="text-uppercase"><i class="fas fa-question-circle pr-3"></i> Need Help?</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

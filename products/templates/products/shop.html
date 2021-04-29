@@ -17,13 +17,7 @@
             <hr class="w-50 mb-3">
         </span>
     </div>
-    <!-- Variety buttons -->
-    <div class="row">
-        <div class="col-12 my-auto d-flex justify-content-center justify-content-md-end">
 
-
-        </div>
-    </div>
     <div class="row">
         <!-- Breadcrumb -->
         <div class="col-12 col-md-6">
@@ -89,8 +83,10 @@
     </div>
 </div>
 <!-- Products -->
+
 <div class="container">
     <div class="row">
+        {% if products %}
         {% for product in products %}
         <div class="col-4">
             <div class="card product-card h-100 border-0">
@@ -126,7 +122,7 @@
                         </div>
                         <div class="row">
                             <div class="col-10 px-0">
-                                <h6 class="text-uppercase pt-2" id="category-link">
+                                <h6 class="text-uppercase pt-2 category-link">
                                     <a href="{% url 'products' %}?category={{ product.category.name }}">
                                         {{ product.category.display_name }}
                                     </a>
@@ -168,6 +164,9 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p class="text-uppercase">NO MATCHING PRODUCTS</p>
+        {% endif %}
     </div>
 </div>
 <a href="#" id="back-to-top" title="Back to top"><i class="fa fa-chevron-up"></i></a>
