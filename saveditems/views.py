@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -19,9 +19,12 @@ def saved_items(request):
     return render(request, 'saveditems/saveditems.html', context)
 
 
-@login_required
 def add_save(request, product_id):
     """Add and remove items from saved list"""
+
+    if not request.user.is_authenticated:
+        messages.error(request, 'You must login to save items')
+        return redirect(reverse('account_login'))
 
     item = get_object_or_404(Product, pk=product_id)
     user = UserAccount.objects.get(user=request.user)
@@ -30,7 +33,8 @@ def add_save(request, product_id):
 
     if created:
         item.saved_items.add(user_list.id)
-        messages.info(request, f'{item.name} was added to your saved items')
+        messages.info(
+            request, f'{item.name} was added to your saved items')
     else:
         if item in saved_items:
             item.saved_items.remove(user_list.id)

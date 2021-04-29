@@ -13,19 +13,7 @@ from checkout.models import Order
 def account(request):
     """Display the user's account"""
 
-    account = get_object_or_404(UserAccount, user=request.user)
-
-    form = UserAccountForm(instance=account)
-    orders = account.orders.all()
-
-    template = 'accounts/account.html'
-    context = {
-        'form': form,
-        'orders': orders,
-        'on_account_page': True,
-    }
-
-    return render(request, template, context)
+    return render(request, 'accounts/account.html')
 
 
 @login_required

@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.core.paginator import Paginator
 
 from .models import Product, Category, Variety
 from .forms import ProductForm
@@ -37,10 +36,6 @@ def all_products(request):
 
             if sortkey == 'category':
                 sortkey = 'category__name'
-
-            if sortkey == "strength":
-                sortkey = 'lower_strength'
-                products = products.annotate(lower_strength=Lower("strength"))
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']

@@ -150,7 +150,6 @@ p {
 }
 
 #shop-nav {
-    /* background: #1c1c1c; */
     border-top: 1px solid #868686;
 }
 
@@ -243,7 +242,7 @@ span.nav-link:focus {
     font-size: 11px;
 }
 
-.dropdown-item {
+.dropdown-menu .dropdown-item {
     font-size: 12px;
 }
 

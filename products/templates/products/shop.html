@@ -131,12 +131,17 @@
                             <div class="col-2 px-0 text-right">
                                 <p class="link">
                                     <a href="{% url 'add_save' product.id %}">
+                                        {% if request.user.is_authenticated %}
                                         {% if product in saved_list %}
                                         <i class="fas fa-heart fa-lg text-danger" data-toggle=" tooltip"
                                             data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                         {% else %}
                                         <i class=" far fa-heart fa-lg" data-toggle="tooltip" data-placement="left"
                                             title="CLICK TO ADD TO YOUR SAVED ITEMS"></i>
+                                        {% endif %}
+                                        {% else %}
+                                        <i class=" far fa-heart fa-lg text-secondary" data-toggle="tooltip"
+                                            data-placement="left" title="LOGIN TO SAVE"></i>
                                         {% endif %}
                                     </a>
                                 </p>

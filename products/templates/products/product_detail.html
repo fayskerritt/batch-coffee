@@ -94,12 +94,17 @@
                             <input type="submit" class="dark-button rounded-0 text-uppercase mt-1" value="Add to Bag">
                             <span class="link pt-2">
                                 <a href="{% url 'add_save' product.id %}">
-                                    {% if saved %}
-                                    <i class="fas fa-heart fa-2x pl-4 text-danger" data-toggle=" tooltip"
+                                    {% if request.user.is_authenticated %}
+                                    {% if product in saved_list %}
+                                    <i class="fas fa-heart fa-lg text-danger" data-toggle=" tooltip"
                                         data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                     {% else %}
-                                    <i class="far fa-heart fa-2x pl-4" data-toggle="tooltip" data-placement="left"
+                                    <i class=" far fa-heart fa-lg" data-toggle="tooltip" data-placement="left"
                                         title="CLICK TO ADD TO YOUR SAVED ITEMS"></i>
+                                    {% endif %}
+                                    {% else %}
+                                    <i class=" far fa-heart fa-lg text-secondary" data-toggle="tooltip"
+                                        data-placement="left" title="LOGIN TO SAVE"></i>
                                     {% endif %}
                                 </a>
                             </span>
