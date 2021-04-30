@@ -95,7 +95,7 @@
                             <span class="link pt-2">
                                 <a href="{% url 'add_save' product.id %}">
                                     {% if request.user.is_authenticated %}
-                                    {% if product in saved_list %}
+                                    {% if saved %}
                                     <i class="fas fa-heart fa-lg text-danger pl-4" data-toggle=" tooltip"
                                         data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                     {% else %}
