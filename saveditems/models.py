@@ -16,6 +16,7 @@ class SavedList(models.Model):
 
 
 class SavedItems(models.Model):
+    """Each item in user;s saved list"""
     saved_list = models.ForeignKey(SavedList, null=False, blank=False,
                                    on_delete=models.CASCADE,
                                    related_name='saved_list')

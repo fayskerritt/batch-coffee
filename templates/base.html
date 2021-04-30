@@ -45,7 +45,9 @@
     <title>Batch Coffee {% block extra_title %}{% endblock %}</title>
 </head>
 
+
 <body>
+    <!-- Nav Header -->
     <header class="container-fluid fixed-top">
         <div class="row navbar d-none d-sm-flex">
             <div class="col-12 col-md-5">
@@ -113,6 +115,7 @@
             </div>
         </div>
 
+        <!-- Dropdown collapsible shop nav and mobile header -->
         <nav class="navbar navbar-expand-md navbar-dark d-none" id="shop-nav">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar"
                 aria-controls="nav-bar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +130,7 @@
             </div>
         </div>
     </header>
-
+    <!-- Messages -->
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
@@ -152,6 +155,7 @@
     {% block content %}
     {% endblock %}
 
+    <!-- Footer -->
     <div class="footer-space"></div>
     <footer class="container-fluid fixed-bottom">
         <div class="container">
@@ -176,7 +180,7 @@
         </div>
     </footer>
     {% block postloadjs %}
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
     {% endblock %}

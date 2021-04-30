@@ -10,7 +10,7 @@
 
 <div class="col-12 col-md-5 order-md-first">
     <p class="text-muted mt-3 small text-left">
-
+        <!-- Breadcrumb -->
         <span class="small shop-breadcrumb"><a href="{% url 'products' %}">SHOP </a></span>
         <span class="small px-2">></span>
         <span class="small shop-breadcrumb text-uppercase">
@@ -31,7 +31,7 @@
         </span>
     </p>
 </div>
-
+<!-- Product Info -->
 <div class="container h-100 pt-5">
     <div class="row">
         <div class="col-12 d-flex d-sm-none">
@@ -96,14 +96,14 @@
                                 <a href="{% url 'add_save' product.id %}">
                                     {% if request.user.is_authenticated %}
                                     {% if product in saved_list %}
-                                    <i class="fas fa-heart fa-lg text-danger" data-toggle=" tooltip"
+                                    <i class="fas fa-heart fa-lg text-danger pl-4" data-toggle=" tooltip"
                                         data-placement="left" title="CLICK TO REMOVE FROM YOUR SAVED ITEMS"></i>
                                     {% else %}
-                                    <i class=" far fa-heart fa-lg" data-toggle="tooltip" data-placement="left"
+                                    <i class=" far fa-heart fa-lg pl-4" data-toggle="tooltip" data-placement="left"
                                         title="CLICK TO ADD TO YOUR SAVED ITEMS"></i>
                                     {% endif %}
                                     {% else %}
-                                    <i class=" far fa-heart fa-lg text-secondary" data-toggle="tooltip"
+                                    <i class=" far fa-heart fa-lg text-secondary pl-4" data-toggle="tooltip"
                                         data-placement="left" title="LOGIN TO SAVE"></i>
                                     {% endif %}
                                 </a>

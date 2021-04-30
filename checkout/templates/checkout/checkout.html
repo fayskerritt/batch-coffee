@@ -26,6 +26,7 @@
 
 <div class="container">
     <div class="row">
+        <!-- Bag Items -->
         <div class="col-12 col-md-4 order-md-last">
             <h4 class="text-uppercase mt-5 mb-2">Your Bag ({{ product_count }})</h4>
             <div>
@@ -67,7 +68,7 @@
             </div>
         </div>
         <div class="col-12 col-md-8">
-
+            <!-- Checkout Form -->
             <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                 {% csrf_token %}
                 <h4 class="text-uppercase mt-5 mb-2">Email Address</h4>
@@ -118,6 +119,7 @@
         </div>
     </div>
 </div>
+<!-- Loading spinner and overlay -->
 <div id="loading-overlay">
     <div class="loading-spinner text-light">
         <i class="fas fa-10x fa-spinner fa-spin"></i>

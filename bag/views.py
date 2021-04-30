@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
-from django.contrib import messages
-
 from products.models import Product
+from django.contrib import messages
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 
 
 def shopping_bag(request):

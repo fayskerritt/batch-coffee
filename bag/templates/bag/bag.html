@@ -22,6 +22,7 @@
 
 <div class="container">
     <div class="row">
+        <!-- Bag Items -->
         {% if bag_items %}
         <div class="col-12">
         </div>
@@ -70,6 +71,7 @@
                                 <div class="quantity-update">
                                     <div class="form-group">
                                         <div class="input-group">
+                                            <!-- Quantity selector -->
                                             <select class="form-control custom-select rounded-0 update-qty mx-auto"
                                                 name="quantity" value="{{ item.quantity }}"
                                                 data-product_id="{{ item.product.id }}"
@@ -122,6 +124,7 @@
                             <h6 class="font-weight-bold text-center">£{{ item.product.price }}</h4>
                         </td>
                         <td class="text-right">
+                            <!-- Delete Button -->
                             <div class="delete-x text-right">
                                 <a href="{% url 'remove_from_bag' item.product_id %}">
                                     <i class="fas fa-times fa-2x" data-bs-toggle="tooltip" data-bs-placement="left"
@@ -135,6 +138,7 @@
                 </tbody>
             </table>
         </div>
+        <!-- Total Table -->
         <div class="col-12 col-md-3">
             <table class="table table-sm align-middle table-borderless ">
                 <thead>

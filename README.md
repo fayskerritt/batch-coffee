@@ -15,7 +15,6 @@ Visit the deployed site: puffins
 # Deployed Site
 View the deployed site here - [Batch Coffee](https://pad-plants.herokuapp.com/)
 
-![Mockup](static/img/readme/mockup.png)
 
 # UX
 ## Project Goals
@@ -43,7 +42,6 @@ The web store must allow users to browse products, save any they like the look o
 
 ### Buying
 * As a shopper, I want to choose the quantity of a product when purchasing so I can add more than one item to my bag at a time
-* As a shopper, I want to choose the size of a product when purchasing so I can add the correct size to my bag
 * As a shopper, I want to view all items in my bag that I have added so I can see the total cost of the items I will receive
 * As a shopper, I want to change the quantity of products in my bag so I can make changes to my bag before checkout
 * As a shopper, I want to enter my personal details and payment details so I can quickly and easily checkout
@@ -200,7 +198,10 @@ Buttons that take the user straight to browse products or to the about page
 
 
 ### Features to Implement in the Future
-* Pagination on the shop page as the database grows.
+* Pagination on the shop page as the database grows, this will need to be specially added as to work with the filter and sorting functionality that currently exists
+* Currently in the shopping bag the quantity field can only show up to 10 units due to the dropdown only going up to 10, there is an error message that notifies users of this but in future it will be impossible for the user to add more than 10 items to the shopping bag for stock reasons
+* In the future an in/out of stock field will be added to the Product model so that products can be on the database but unable for purchase. Due to the nature of the product not having an extensive shelf-life this will be good for store staff to monitor sales
+* 
 
 # Technologies Used
 ### Databases
@@ -229,138 +230,234 @@ Buttons that take the user straight to browse products or to the about page
 - [GitHub](https://github.com/)
 - [Gitpod](https://www.gitpod.io/)
 - [Gunicorn](https://pypi.org/project/gunicorn/)
-- [Jigsaw – CSS Validation](https://jigsaw.w3.org/css-validator/)
-- [JS Hint](https://jshint.com/)
-- [PEP8](http://pep8online.com/)
 - [Pillow](https://pillow.readthedocs.io/en/stable/)
 - [PIP](https://pip.pypa.io/en/stable/installing/)
 - [Psycopg2](https://pypi.org/project/psycopg2/)
 - [Stripe](https://stripe.com/gb)
+- [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
 - [W3C – HTML Validation](https://validator.w3.org/)
-- [MarkdownTOC](http://ecotrust-canada.github.io/markdown-toc/')
+- [W3C – CSS Validation](https://jigsaw.w3.org/css-validator/)
+- [JS Hint](https://jshint.com/)
+- [PEP8](http://pep8online.com/)
 
 ### Hosting
 - [Heroku](https://www.heroku.com/)
 - [AWS S3 Bucket](https://aws.amazon.com/)
 
-
-
 # Testing
 ### Code Validation
-* [HTML Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpad-plants.herokuapp.com%2F) - No errors found
-* [CSS Validator](https://jigsaw.w3.org/css-validator/validator) - No errors found 
-* [JSHint](https://jshint.com/) - No issues found 
-* [PEP8](http://pep8online.com) - No issues found
+* [W3C – HTML Validation](https://validator.w3.org/) - No errors found using url
+* [W3C – CSS Validation](https://jigsaw.w3.org/css-validator/) - No errors found in custom css
+* [JSHint](https://jshint.com/) - No issues found in javascript files
+* [PEP8](http://pep8online.com) - No issues found in python files
 
 ### Testing User Stories
-#### New User
-* As a new user, I want to understand the main purpose of the site, so I can learn more about the site’s features.
-    * Once loaded, the home page clearly explains the sites purpose and prompts the user to register via a button so that they can "discover the best houseplants for your home and share your favourites with others", when clicked, the register button takes the user to the Registration page.
-    * Tested on different browsers and devices and the layout works well on all, collapsing from 2 columns to 1 on smaller devices.
-    * The register button was tested on all browsers and devices by either clicking or touching depending on device, the registration form successfully loaded on all.
-* As a new user, I want to see the plants featured on the website, so I can learn more about plants.
-    * When clicked, the clearly labelled "Plants" tab in the Navbar or the "Browse" button on the homepage takes the user to the plants.html page where all plants in the database are displayed once loaded. This list is displayed in a card grid format and can be scrolled through to view all plants, or alternatively use the search form to search using the different inputs.
-    * Tested on different browsers and devices and the grid is responsive depending on screen size, looks good on all and displays all information clearly on all.
-* As a new user, I want to be shown where I can buy plants, so I can purchase a house plant.
-    * On the home page there is a link to the "plant store", this stands out on a clear green background and when clicked, the link takes the user to an Amazon 'Houseplants' search in a new tab, which in the future will be set up to a Pad Plants store.
-    * Tested on different devices and browsers to ensure it always opened in a new tab which it did.
 
-#### Returning User
-* As a returning user, I want to register to the site, so I have my own profile to store my information.
-    * On the home page, when clicked, the "Register" button takes the user to the registration page, this page displays a form that requires the user to enter a username and password, then to re-enter the password to ensure the user has correctly entered their desired password. The form has 3 required inputs which will flag with an exclamation mark if the entry is not valid. The username is required to be between 5 and 15 characters and the following characters are allowed; A-Z a-z 0-9 ! @ # $ % ^ & * _ = + - this is the same for the password fields.
-    * Tested by using different formats of username and password including one with lots of symbols and one with none, some with only numbers and all worked fine.
-    * Also tested by leaving some of the inputs blank as well as clicking register without filling anything in. Every time a pop up appeared telling the user to fill in the missing field.
-* As a returning user, I want to add plants to the database, so I can share my plant knowledge with the community.
-    * Create functionality provides the user with a form to add in details about the plant. 
-    * There are three text input fields; "Name" which is required and must be between 3 and 30 characters, "Botanical Name" which is not required and must also be between 3 and 30 characters then "Description" which is required and must be between 5 and 200 characters. 
-    * Two drop down select options allow the user to choose the watering schedule and size of plant.
-    * Tested by adding plants making sure to test all possible selections and options.
-    * Also tested by leaving some required fields blank, this caused a pop up to appear telling the user to fill in the missing field. It was decided when developing that the check boxes would not be required as to not put off users who did not know this information.
-* As a returning user, I want to have access to all plants added by other members, so I can benefit from other people's knowledge.
-    * All plants are visible to all users on the Plants page, in descending order so a returning user can view most recently added plants.
-    * As above, this was tested on different browsers and devices, page is fully responsive to changes in size.
-* As a returning user, I want to be able to logout of my profile, so I can keep my data safe.
-    * Logout option in the navbar will delete session cookies for that user and take them back to the login page where they will need to re-enter their credentials again to log back in.
-    * Tested by logging in and using the logout button with the dev tools open to ensure session cookies was deleted. Successful every time.
+### Viewing, Sorting and Searching
+* As a shopper, I want to view all products so I can see what is available to purchase on the site
+    * Many ways to view all items, primarily from dropdown navbar there is a link to 'All Coffee'
+    * Whilst on shop page breadcrumb always displays link to SHOP which displays all coffee
+    * On the home and about pages there is a button to browse all coffee
+* As a shopper, I want to view details about a specific product so I can see the price, details and description of the product
+    * Product detail page displays all information about a product
+    * From the shop page the user can click anywhere on the product image or name to get to the product detail page
+    * A hover slide down feature on the shop page gives the user more information about the coffee for ease of use
+* As a shopper, I want to view products in categories so I can see the range of products available
+    * In the navbar the user has category dropdowns which enables them to view each grind category by variety and all of each grind category
+    * In the shop menu the breadcrumb gives the user options to view all of either variety or category
+* As a shopper, I want to sort products by category so I can view the specific category I am interested in
+    * Again in the drop down shop nav there are options to sort by category and variety
+    * The sort dropdown then gives the user the option to further sort each category
+* As a shopper, I want to sort products by price so I can find the best prices
+    * In the shop nav there is an option to view all coffee bt price which displays the coffees in ascending order
+    * In the shop page the sort drop down allows the user to sort their current view by price either ascending or descending
+* As a shopper, I want to sort products by more than one category at the same time so I can view the prices of the categories I am 
+interested in 
+    * If the user has searched for a category or variety from the shop nav these are then able to be further sorted by the sort dropdown
+* As a shopper, I want to search for product by name or description so I can find a specific product I would like to purchase
+    * The search bar in the navbar queries all coffee and will search within the name, description, category and variety field to ensure the search is successful
+    * If no products found a message will be shown to the user
+* As a shopper, I want to see the search terms I used and how many results my search got so I can see whether the product I am interested in is available
+    * The search query of the user's search will be displayed with the number of items found at the top of the shop page
 
-#### Frequent User
-* As a frequent user, I want to edit my added plants, so I can keep the information current.
-    * Every plant that the currently logged in user has added will have an edit button, which will take the user to an edit form which will fill in the form with the current data from the database and will allow the user to edit each input then save, or alternatively cancel if they decide to no longer edit.
-    * Tested by changing the inputs multiple times and checking each time after clicking save that the data has been updated on MongoDB, which was successful every time.
-    * Also tested by taking the URL of the edit page and logging out then trying to view the URL, this shows an error message telling the user they are not authorised to edit the plant and a cancel button that returns you to the plants page for security reasons.
-* As a frequent user, I want to search for specific plants, so I can find information about plants I own.
-    * The Plants page includes a search bar which allows the user to search any word and will search within the database from the name, botanical name and description keys.
-    * This was tested by searching the database using words that I knew were in the database, these all displayed the correct plants.
-    * It was also tested using words that are not present in the database which brought up the no plants found text.
-* As a frequent user, I want to be able to delete my added plants, so I can ensure no duplicates in the database.
-    * Every plant that the currently logged in user has added will have a delete button, which will remove the plant from the database. If clicked there is a pop up that requires the user to confirm deletion to prevent accidental deleting.
-    * To test this 5 test plants were added and 3 were deleted from the plants page and 2 from the profile page. The id in the URL was checked for each and Mongodb was also checked to ensure the data had been deleted. All worked fine.
-* As a frequent user, I want to view all plants with specific filters, so I can choose a new house plant to suit my needs.
-    * As mentioned above there is a search bar which searches the name, botanical name and description of all plants in the database.
-    * There are also two drop down options which allow the user to choose a room and/or a size. Finally there are two checkboxes; one which will display plants that do not require a lot of light and/or the other which will display plants that do not require frequent watering. 
-    * Each input can be searched on its own or they can be combined to create an advanced search of the list of plants from the database.
-    * This was tested by searching the database with every possibility of search:
-        * Individual input search, so tried searching by all 5 rooms on their own, all sizes on their own and each check box checked on its own. Worked fine
-        * Two inputs selected, this was trialled with; room & size, room and light, room and water, size and light, size and water, light and water all worked fine and showed correct findings, or none found.
-        * Three inputs selected, this was trialled on all rooms with a size selected then each checkbox selected, all worked fine or showed the none found text.
-        * All inputs selected; this was trialled with all selected which only showed results for certain rooms, but all were correct.
-        * Finally all of the above were tested with a text input as well, all tests worked fine and showed correct list of plants.
+### User Admin
+* As a site user, I want to register for an account so I can be able to view my personal account
+    * If not already logged in the user will be able to navigate from the navbar user dropdown icon to the registration form
+    * They will require an email, username and password to register and will receive an email from which they need to confirm their email address
+* As a site user, I want to login and logout of my account so I can access my account and information
+    * If user is logged in there will be a dropdown option in the user icon for them to logout with a confirm button that will show asking if they are sure they want to logout
+    * If not already logged in the user will find the login dropdown from the user icon in the navbar where they will be required to enter either their username or email address and password to login
+    * login_required decorator from django also used in places where actions require the user to be logged in which will redirect the user to the login page
+* As a site user, I want to recover my password if I forget it so I can get back into my account if I have forgotten my password
+    On the login page a 'forgotten password' link is present for the user to reset their password
+* As a site user, I want to receive an email confirmation after registering so I can verify that my account registration was successful
+    * An email from batchcoffee1@gmail.com will be received by the user with a link to confirm their email address on the site
+* As a site user, I want to have access to a personalised user profile so I can view my order history, order confirmations and save my delivery and payment information
+    * The user can navigate to their personalised account from the user dropdown in the menu once logged in
+    * Their account page has a custom side menu with all account related options as well as a back to shop link
+    * The user can view a form of their delivery details if they chose to save them when making a purchase or alternatively an empty form which they can fill in to save their details
+    * The user can also view their order history which is displayed in a list newest at the top. Each order shows the order number, date email and expected delivery date with a progress bar showing where their order should be at that current time. The order number is also a link to take them to their full order Summary
+    * Finally the user can navigate to their saved items page which displays all items they have added using the heart icon. They are able to remove any items from this list by clicking the heart icon again. They are also able to go to the product page if they decide to ourchase the item
 
-#### Site Owner/Developer
-* As the owner/developer, I want to expand my database of plants, so I can broaden my knowledge.
-    * The site is simple to use, users are directed to the register page from the home page as well as if they search for a plant and there are no results.
-    * Logging into the site is easy and when registering you have to confirm your password, so users are less likely to forget their credentials.
-    * Adding a plant is also easy, the botanical name is not required so even if users don't have that information, they are still able to add a plant.
-    * This was tested by friends and relatives who tested the site for me.
-* As the owner/developer, I want to redirect users to a store, so I can gain sales from people interested in plants.
-    * The link to a store is clearly visible to all users on the homepage with a clear green background.
-    * This was tested by clocking the link and ensuring the page opened in a new tab.
-* As the owner/developer, I want to grow my community of plant lovers, so I have an audience of potential customers.
-    * The site looks nice and is inviting with nice images and a good layout, which will attract users to explore further as well as make them more likely to return.
-    * This was tested by asking family and friends for feedback, which was all very positive.
+### Buying
+* As a shopper, I want to choose the quantity of a product when purchasing so I can add more than one item to my bag at a time
+    * The quantity dropdown in the product detail page allows users to choose how many items they wish to add to their bag
+* As a shopper, I want to view all items in my bag that I have added so I can see the total cost of the items I will receive
+    * The bag icon in the navbar shows the total number of units in the shopping bag currently for the user to easily see how many items they have currently
+    * If clicked the bag opens with each product on its own line stating the quantity of each
+    * The shopping bag also has a total table which displays a sub-total of the products in the bag, this is the quantity of items * the item price. 
+    * The sub-total also takes into consideration any discount applied if the user spends over the threshold, if so the discounted amount is shown also with a message letting the user know (or a message to tell them how far they are from the threshold)
+    * The delivery price is also stated in the shopping bag
+    * Finally a grand total with all the above considered
+* As a shopper, I want to change the quantity of products in my bag so I can make changes to my bag before checkout
+    * Each product in the shopping bag has its own quantity drop down which is editable
+    * If the user changes the amount a button will appear to update the bag total
+    * Also a cancel button will appear if the user decides they do not want to change the quantity and reverts the quantity back to its original value
+    * A message will be displayed to let the user know the change of quantity
+* As a shopper, I want to enter my personal details and payment details so I can quickly and easily checkout
+    * At checkout the user must enter their personal details as well as delivery details and payment details to complete their order
+    * The delivery details will be autofilled if the user is logged in and has saved their details in their account
+    * A stripe input allows the user to input their credit card details that is quickly responsive if the card details are incorrect and will show the error to the user
+* As a shopper, I want to feel that my personal information is secure so I can provide the required information confidently
+* As a shopper, I want to see my order details confirming my order has been placed so I can make sure all information is correct
+    * If the order is successful the user will be redirected to their order summary page
+    * This page displays a message telling the user of the confirmation that has been sent stating the email address it has been sent to
+    * The order number, date and estimated delivery date is also displayed with icons to make each field clear
+    * The amount of items is shown with a brief overview of each item on the order including the quantity
+    * A table shows the payment details including the delivery cost any duscount and the total spent.
+* As a shopper, I want to receive an order confirmation email once my order has been placed so I can keep the confirmation email for my records
+    * An email from batchcoffee1@gmail.com will be received by the user with a brief summary of their order, including delivery details and payment details
 
+### Store Admin
+* As a store owner, I want to add a product so I can add new items to my online store
+    * If user is logged in with an admin/superuser login they will see the store admin dropdown in the user icon in the navbar
+    * This link will take them to the add product page whuch displays a form requiring all the fields from the Product table highlighting whether each field is required
+    * The form also has an option to upload an image file which will clearly show which file the user has to upload
+* As a store owner, I want to edit or update a product so I can change the price or details of any product to keep them up to date
+    * Again if logged in as an an admin/superuser two buttons will appear on every product detail page
+    * The edit button that appears will take the user to an autofilled form showing the information of the product in it's current state with the options to change all fields and image
+* As a store owner, I want to delete a product so I can remove items from my online store I no longer sell
+    * If logged in as an admin/superuser the other of the two buttons that will appear on every product page is a delete button, this will delete the product from the database and site completely
 
 ### Manual Testing
 #### Functionality
-* All internal links are clearly labelled and work correctly when clicked.
-* All external links are clearly labelled, work correctly and open in a new tab.
-* All buttons are clearly labelled and work correctly.
-* All forms submit data in the correct format for the database and provide the correct options for the user to choose from.
-* All inputs, dropdown menus and checkboxes work correctly and submitting these displays the correct results.
-* Cookies work correctly when logging in and logging out.
-* All photos render clearly and the correct size and position.
-* All plant information renders clearly and the correct size and position.
+Navbar:
+* All navbar links tested on every page and all work as they should.
+* Nav Shop drodown tested to ensure javascript shows and hides information correctly.
+* All nav dropdowns were tested to ensure each link displayed the correct information, this was checked against the display message that stated the categories and varieties and number of products showing.
+* User dropdown tested to ensure it only displayed the login and register links to users who were not already logged in.
+* Once logged in the user dropdown was tested to ensure it showed the my account and logout links.
+* If logged in as a superuser, the user dropdown was tested to ensure it displayed the store admin option.
+* If not logged in it was tested to ensure the my account and store admin links were not visible
+* The shopping bag icon was tested to ensure it took the user to the bag and also tested to ensure the number next to it displayed the correct number relative to what was in the shopping bag.
+* The saved items icon was tested to ensure it was only displayed to users who were logged in anf if logged in tested to ensure it took user to their saved items page.
+* Search bar thouroughly tested with a combination of valid and invalid inputs to ensure working correctly and messages reflected isues.
+
+Home page:
+* Both internal links are clearly labelled and work correctly when clicked, these have both been tested.
+* Both external links are clearly labelled, work correctly and open in a new tab, the two social media links have been tested in footer.
+
+Shop:
+* All nav dropdown options were testing with extra sorting from the sort dropdown on the shop page to ensure no mater what was being displayed it was always correctly sorted.
+* All queries that displayed no products were checked to ensure a message let the user know this and was not just a blank page.
+* Breadcrumb Shop link tested to ensure it always took user to all products.
+* Breadcrumb category links tested to ensure always displayed all products of that category.
+* Breadcrumb variety links tested to ensure always displayed all products of that variety.
+* Sort dropdown tested for each value ascending and descending to ensure products were sorted correctly.
+* All products render clearly with image and information that was checked against the database.
+* Product cards were tested on all screen sizes and broswrs to ensure they are clear and are the correct size and position.
+* Product card slide down overlay tested to ensure always displayed correct information and scroll was available if decription too long to fit inside card.
+* Product category links on each product card tested to ensure took user to correct category.
+* Saved buttons tested to ensure redirected user to login if not logged in.
+* Saved button tested to ensure that if the item was not already on the users saved items list the heart logo was black and not solid and if clicked turned solid red and added the item to the user's saved item list. This was then checked in the database to ensure happened correctly.
+* Saved button tested to ensure that if the item was already on the user's saved items list then it was displayed as solid and red and if clicked it turned black and not solid and was removed from the user's saved items list.
+
+Product Page:
+* Product images and information tested to ensure displayed correctly.
+* Quantity dropdown tested to ensure the correct quantity was added to the bag depending on what was chosen.
+* Add to bag button tested to ensure it took the user to the shopping bag and the quantity in the shopping bag was correct.
+* Back to shop button tested to ensure it took user back to the all products page.
+* Saved button tested in the exact same way as in the shop view to ensure the correct outcome whether the user was logged in or not as well as if the item was already in the user's aved items list or not.
+* Breadcrumb links also tested to ensure worked the same as on the shop page.
+* Comments tested to ensure if not logged in the comment form did not display.
+* Comments tested to ensure if logged in the comments form displayed and the user was able to add a comment to the product which displayed the comment with the username and date and time stamp.
+* If a comment was added this was then checked to see if correct in django admin.
+* Comments tested to ensure if user logged in and it was their comment they were able to delete the comment and it was deleted from the admin also.
+* Comments tested to ensure if the comment was not added by the logged in user they were unable to delete.
+* For superuser only the edit and delete buttons were tested to ensure they worked correctly referencing the admin and were not accessible to non superuser users.
+
+Shopping Bag:
+* Product tables checked to ensure displayed correctly and information correct.
+* Quantity dropdown thoroughly tested to ensure javascript worked correctly at hiding and showing the update and cancel buttons.
+* Update button for changing quantity was tested to ensure the quantity in the shopping bag was updated correctly.
+* Cancel button tested to ensure the quantity was not updated and the number in the dropdown returned to original quantity.
+* Back to shop button checked to ensure it took user back to the all products page.
+* Toast checked to ensure if quantity updated it didnt show bag summary as already on the bag page.
+*  Order total tested to ensure all information correct.
+
+Checkout:
+* Forms tested to ensure validation working correctly, a combination or valid and invalid inputs were tested.
+* Stripe test card number tested to ensure worked correctly.
+* Form tested for logged in users as well as logged out users, if user was logged in the save information checkbox was tested and the autofill information was also checked against the user account.
+* Once submitted the checkout success page was tested to ensure it matched the information that was in the shopping bag before checking out.
+* Stripe webhooks tested to ensure they were working correctly, the form.save() line of code was commented out to test the webhook worked, which forced the order to be created by the webhook.
+* Stripe dashboard was checked on each test order to ensure to errors.
+
+Login/Logout/Signup:
+* Logging in was tested with multiple users to ensure forms worked correctly.
+* Logout was checked to ensure user was asked if they were sure to logout and then redirected to the home page.
+* Cookies work correctly when logging in and logging out, this has been tested many times with a number of users.
+* Signup was tested to ensure the form was validating correctly, a combination of valid and invalid inputs were used.
+* Confirm email was tested multiple times to ensure the links in the emails worked consistely and redirected the user to the login page.
+
+Account Page:
+* Delivery details tested to ensure correct from checkout.
+* Updating the details was tested to ensure validation worked properly and the information was correctly saved in the database.
+* Order history was checked to ensure all info was correct and the order number links took the users to the correct order pages.
+* Saved items page was tested to ensure only products in the user's saved items list were present
+* Saved item buttons were tested in the same way they were in shop and product page exceot in saved items page once the solid red heart was clicked it was made sure that that products was removed from saved items list and then dissapeared from the page.
+
+Store Admin:
+* Add product form was tested to ensure it submitted data in the correct format for the database and provided the correct options for the user to choose from, checking the admin once submitted to ensure it was successful.
+* Edit product page forms also tested in th same way the add product form was but also ensuring the autofilled data was correct, this was also checked against the admin to ensure udated information was successful.
 
 #### Database
-* All data inputs to the database follow the same format, whether they are added on the database or through the web app.
-* All updated data through the edit plant button updates the database correctly.
-* All user information is clearly and securely stored in the database.
+* All data inputs to the database follow the same format, whether they are added on the database or through the site.
+* All updated data through the edit product view updates the database correctly.
+* All user information is clearly and securely stored in the database, any non sensitive information can be viewed in the django admin.
+* Once data submitted on the site it has been checked to ensure it is correct in the django admin.
 
 #### Interface
 * Each page of the web app has the same consistent layout.
+* The navbar and footer display the same links on every page and each link has been tested on each page to ensure they all work and go to the same place.
+* The navbar was checked to ensure it was fixed to the top of the screen at all times.
+* The margin and padding added to elements to ensure nothing is hidden was checked on all screen sizes and broswers to ensure all information is visible on site at all times.
 * The font, colour scheme and styling is consistent across the web app.
-* All queries from the database display the plant data clearly and well formatted across both the plant page and profile page.
+* All products are displayed in a similar format no matter of what page they are on for consistency, every page has been checked to ensure all information is rendered correctly.
 * The site link hosted through Heroku displays everything correctly.
 
 #### Security
-* Incorrect login details returns a generic error message and reloads the page.
-* Users can only update and delete plants that they have added, jinja templating is used to hide information from any users that are not authorised.
-* Password confirmation when registering ensures users remember their login credentials.
-* Password is hashed so the password that the user inputs when registering is never saved in the database.
+* Incorrect login details returns an error message asking the user to try again, this has been tested with different users and different combinations of correct and incorrect details.
+* Decorators for models that users need to be logged in to view have been tested to ensure the user is redirected to the login page.
+* Links on the site have been tested to ensure they are hidden and unavailable to users who are not logged in. Also to ensure the correct error message is displayed.
+* URL links have been tried when not logged in to ensure users do not have access to areas they shouldn't have and are redirected to the login page with the correct error message.
+* Password confirmation when registering ensures users remember their login credentials and ensure the password match, this has been tested with a combination of correct and incorrect inputs to ensure the correct error messages are displayed.
+* User passwords are hashed so the password that the user inputs when registering is never saved in the database, this has been checked in the admin to ensure no passwords visible.
 
 #### Accessibility
-* All images have an alt attribute which explains the image for screen readers.
-* Aria labels are also used when the alt attribute is not available.
-* Semantic markup is used for clear html structure.
+* All images have been checked to ensure they have an alt attribute which explains the image for screen readers.
+* All images have also been checked to ensure they have an aria label when the alt attribute is not available.
+* Semantic markup is used for clear html structure, which has been checked thoroughly.
 * Contrast of colours used across the site were checked in Google Dev Tools to ensure the contrast was AA meaning a score between 3.0 and 4.5.
 
 #### Usability
-* Styling and JavaScript are used to make the navbar interactive when hovered over to engage the user.
-* The active page is bold in the navbar to tell the user which page they are on.
+* Styling and JavaScript are used to make the navbar interactive when hovering over each nav link to engage the user.
 * All links in the navbar work correctly and take you to the correct page.
 * The collapsible navbar works correctly on smaller screens with the hamburger button working to show the navbar links.
-* If an error occurs with the URL the 404 page explains what has happened and displays a link back to the plants page.
-* Flash messages are displayed in a banner near the top of the page which is the same on every page giving the user feedback or confirming an action.
+* Further dropdowns inside the collapsible navbar also work correctly.
+* If an error occurs with the URL the 404.html page explains what has happened and displays a link back to the shop page.
+* If an error occurs with the URL the 500.html page explains what has happened and displays a link back to the shop page.
+* Messages are displayed in a toast near the top of the page on every page giving the user feedback or confirming an action.
 
 #### Compatibility
 * The web app was viewed on the following browsers and worked correctly on all; 
@@ -378,22 +475,14 @@ Buttons that take the user straight to browse products or to the about page
     * iPhone 12 Pro Max
     * iPhone 11
     * Samsung S21
-* Also Google Dev tools was used to check the responsiveness of the site by changing the size of the screen and using the zoom feature.
+* Google Dev tools was also used to check the responsiveness of the site by changing the size of the screen and using the zoom feature.
 
 #### Performance
 * From Lighthouse in Chrome Devtools:
-    * Performance - 59 (lower metrcis due to the size of the images on the home page causing load time to increase)
-    * Accessibility - 92
+    * Performance - 65
+    * Accessibility - 94
     * Best Practices - 93
-    * SEO - 100
-
-#### Bugs
-* Search functionality was coded incorrectly to start with using elif to check if the select inputs and checkboxes had been filled in, which meant that as soon as one of the expressions was true then it would ignore the rest of the elifs. This was fixed by changing it to an if statement for each input area.
-* Add Plant button was visible when no plants could be found when using the search bar, even if the user was not logged in. This was fixed by adding in a jinja if statement to only show the add button if the user was logged in and to show the register button if they were not.
-* Modal pulled ID of first plant in the list, so when trying to delete a specific plant it would delete the first plant instead. This was fixed by adding in a jinja reference to the plant ID in the ID attribute of the modal html element, which fixed the bug. 
-* When adding in plants the URL was not pasted in correctly which caused there to be no photo of the plant, therefor an onerror attribute was added to the plant cards so that a default image was shown instead.
-* When testing in safari the description scroll positioning cut the top line of the description off so a margin was added to the paragraph as well as a min-width to the card to fix this.
-* Images on homepage cause a higher load time, however I do not want to affect the quality of the images as they are a bit part of the aesthetics, so this would be something I would look into in the future.
+    * SEO - 83
 
 # Local Deployment
 
