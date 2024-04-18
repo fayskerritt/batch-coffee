@@ -13,7 +13,7 @@ CVC: Anything (e.g. 007)
 Visit the deployed site: puffins
 
 # Deployed Site
-View the deployed site here - [Batch Coffee](https://pad-plants.herokuapp.com/)
+Live demo can no longer be viewed as Heroku is no longer free - [old url](https://pad-plants.herokuapp.com/)
 
 
 # UX
